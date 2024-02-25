@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <div class="tools_container">
+      <div>
+        <h1>Agregar un nuevo producto via POST</h1>
+        <div class="general_containers">
+          <input class="input" id="title" type="text" placeholder="Product title" />
+          <input class="input" id="description" type="text" placeholder="Product description" />
+          <input class="input" id="price" type="number" placeholder="Product price" />
+          <input class="input" id="thumbnail" type="text" placeholder="Product thumbnail" />
+          <input class="input" id="code" type="number" placeholder="Product code" />
+          <input class="input" id="stock" type="number" placeholder="Product stock" />
+          <button id="add">Agregar un nuevo producto</button>
+        </div>
+      </div>
+
+      <div>
+        <h1>Actualizar un producto por su ID via PUT</h1>
+        <div class="general_containers">
+          <input class="input product_id" id="productIdToUpdate" type="number" placeholder="Product ID" />
+          <input class="input" id="updatedTitle" type="text" placeholder="Product title" />
+          <input class="input" id="updatedDescription" type="text" placeholder="Product description" />
+          <input class="input" id="updatedPrice" type="number" placeholder="Product price" />
+          <input class="input" id="updatedThumbnail" type="text" placeholder="Product thumbnail" />
+          <input class="input" id="updatedCode" type="number" placeholder="Product code" />
+          <input class="input" id="updatedStock" type="number" placeholder="Product stock" />
+          <button id="update">Actualizar producto</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="productos" class="product_container"></div>
+  </body>
+  <script src="script.js"></script>
+</html>

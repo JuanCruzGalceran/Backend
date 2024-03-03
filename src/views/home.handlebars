@@ -1,0 +1,28 @@
+<div class="container-general">
+    <h1 class="titulo">PRODUCTS</h1>
+    <div class="container-lista">
+        {{#each listadeproductos}}
+        <div class="card">
+            <div class="card-header">
+                <div class="card-header-code">
+                    <i class="bi bi-tag"></i> Code: {{this.code}}
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{this.title}}</h3>
+                    <ul class="card-text">
+                        <li><i class="bi bi-info-circle"></i> ID: {{this.id}}</li>
+                        <li><i class="bi bi-file-text"></i> Description: {{this.description}}</li>
+                        <li><i class="bi bi-currency-dollar"></i> Price: ${{this.price}}</li>
+                        <li><i class="bi bi-grid"></i> Category: {{this.category}}</li>
+                        <li><i class="bi bi-check-circle"></i> Status: {{this.status}}</li>
+                        <li><i class="bi bi-box"></i> Stock: {{this.stock}}</li>
+                    </ul>
+                <div class="container-img">
+                    <img src="{{this.thumbnails.[0].url}}" alt="{{this.title}}" class="card-img">
+                </div>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

@@ -1,0 +1,171 @@
+:root {
+  --primary-color: white; /* Por ejemplo, define el color primario */
+  --secondary-color: #ebebd3; /* Define el color secundario */
+  --third-color: #f4d35e;
+  --fourth-color: #ee964b;
+  --fifth-color: #f95738;
+  --primary-font: "Montserrat", sans-serif;
+  --font-color: black;
+}
+
+body {
+  background-color: #ededed;
+  font-family: var(--primary-font);
+  color: var(--font-color);
+}
+
+.container-general {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-formularios {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.container-form {
+  background: var(--primary-color);
+  padding: 2rem;
+  border-radius: 20px;
+}
+
+.container-eliminar {
+  background: var(--primary-color);
+  padding: 2rem;
+  border-radius: 20px;
+}
+
+.titulo {
+  text-align: center;
+}
+
+.container-lista {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1), 0 -1px 2px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 6px;
+  min-width: 20rem;
+  max-width: 20rem;
+  border-radius: 20px;
+  background: var(--primary-color);
+}
+
+.card-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+}
+
+.titulo-formularios {
+  text-align: center;
+}
+
+.card-header-code {
+  text-align: center;
+  background: var(--third-color);
+  padding: 0.3rem;
+  border-radius: 20px 20px 0px 0px;
+}
+
+.container-eliminar-btn,
+.container-registrar-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.eliminar-btn {
+  background-color: #3483fa;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 4px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+.eliminar-formulario-btn {
+  background-color: #3483fa;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  margin-top: 1rem;
+  cursor: pointer;
+  color: white;
+}
+
+.registrar-btn {
+  background-color: #3483fa;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 4px;
+  margin-top: 1rem;
+  cursor: pointer;
+}
+
+.container-leftright {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+}
+
+.input-group-text {
+  background-color: var(--third-color);
+  padding: 4px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.4rem;
+  margin-bottom: 0.4rem;
+  border-radius: 10px 0px 0px 10px;
+}
+
+.form-control {
+  height: 1.5rem;
+  border: 1px solid var(--third-color);
+  border-radius: 0px 10px 10px 0px;
+}
+
+.img-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-img {
+  margin: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.card-img {
+  max-width: 100px;
+}

@@ -1,6 +1,6 @@
-const express = require("express");
+import express from "express";
+import productManager from "../managers/ProductManager.js";
 const { Router } = express;
-const productManager = require("../managers/ProductManager");
 const products = new productManager("./src/data/products.json");
 
 const router = Router();
@@ -56,4 +56,4 @@ router.delete("/:pid", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

@@ -3,7 +3,7 @@
   --secondary-color: #ebebd3; /* Define el color secundario */
   --third-color: #f4d35e;
   --fourth-color: #ee964b;
-  --fifth-color: #f95738;
+  --fifth-color: #3483fa;
   --primary-font: "Montserrat", sans-serif;
   --font-color: black;
 }
@@ -94,7 +94,7 @@ ul {
 }
 
 .eliminar-btn {
-  background-color: #3483fa;
+  background-color: var(--fifth-color);
   color: white;
   border: none;
   border-radius: 5px;
@@ -106,7 +106,7 @@ ul {
 }
 
 .eliminar-formulario-btn {
-  background-color: #3483fa;
+  background-color: var(--fifth-color);
   border: none;
   border-radius: 5px;
   padding: 5px;
@@ -116,7 +116,7 @@ ul {
 }
 
 .registrar-btn {
-  background-color: #3483fa;
+  background-color: var(--fifth-color);
   color: white;
   border: none;
   border-radius: 5px;

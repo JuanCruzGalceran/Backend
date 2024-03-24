@@ -1,0 +1,25 @@
+<div id="chat-container">
+    <div id="chat-header">
+        <h4>Chat</h4>
+        <h6 id="nombreusuario"></h6>
+        <img src="https://s3-alpha.figma.com/hub/file/1913095808/a7bdc469-cd70-4ea1-bb57-b59204ad8182-cover.png" alt="Logo Customer Service" id="customer-service-logo">
+    </div>
+    <div id="chat-messages">
+        <div class="message sender">
+            <div class="user-info">
+                <div class="sender-name">Conectado 🟢</div>
+            </div>
+            <div id="chat"></div>
+        </div>
+    </div>
+    <form id="formulario">
+        <input type="text" name="mensaje" id="mensaje" placeholder="Escribe tu mensaje">
+        <button id="sendMessage">Enviar</button>
+        <button id="clearChat">Vaciar Chat</button>
+    </form>
+</div>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/chat.js"></script>

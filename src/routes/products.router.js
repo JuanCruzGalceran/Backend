@@ -1,5 +1,5 @@
 import express from "express";
-import productManager from "../managers/ProductManager.js";
+import productManager from "../dao/controllers/Mongo/productManagerMongo.js";
 const { Router } = express;
 const products = new productManager("./src/data/products.json");
 

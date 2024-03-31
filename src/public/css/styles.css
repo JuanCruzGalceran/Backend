@@ -1,17 +1,5 @@
-:root {
-  --primary-color: white; /* Por ejemplo, define el color primario */
-  --secondary-color: #ebebd3; /* Define el color secundario */
-  --third-color: #f4d35e;
-  --fourth-color: #ee964b;
-  --fifth-color: #3483fa;
-  --primary-font: "Montserrat", sans-serif;
-  --font-color: black;
-}
-
 body {
-  background-color: #ededed;
-  font-family: var(--primary-font);
-  color: var(--font-color);
+  background-color: #e0e0e2;
 }
 
 .container-general {
@@ -24,23 +12,34 @@ body {
   align-items: center;
   justify-content: space-around;
   margin-bottom: 2rem;
+}
+
+i {
+  color: #7389ae;
+}
+
+.container-formularios {
+  display: flex;
   gap: 1rem;
   flex-wrap: wrap;
 }
 
 .container-form {
-  background: var(--primary-color);
+  background: linear-gradient(135deg, #416788, #7389ae);
   padding: 2rem;
   border-radius: 20px;
+  color: #fff;
 }
 
 .container-eliminar {
-  background: var(--primary-color);
+  background: linear-gradient(135deg, #416788, #7389ae);
   padding: 2rem;
   border-radius: 20px;
+  color: #fff;
 }
 
 .titulo {
+  font-family: "Kanit", sans-serif;
   text-align: center;
 }
 
@@ -53,19 +52,16 @@ body {
 }
 
 .card {
+  font-family: "Josefin Sans", sans-serif;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1), 0 -1px 2px 0 rgba(0, 0, 0, 0.1);
-  border-radius: 6px;
+  border: none;
   min-width: 20rem;
   max-width: 20rem;
   border-radius: 20px;
-  background: var(--primary-color);
-}
-
-.card-text {
-  display: flex;
-  flex-direction: column;
+  transition: transform 0.3s;
+  background: linear-gradient(135deg, #416788, #7389ae);
+  color: #fff;
 }
 
 .card-title {
@@ -74,17 +70,25 @@ body {
 
 ul {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .titulo-formularios {
+  font-family: "Josefin Sans", sans-serif;
   text-align: center;
 }
 
 .card-header-code {
   text-align: center;
-  background: var(--third-color);
+  background-color: #81d2c7;
   padding: 0.3rem;
   border-radius: 20px 20px 0px 0px;
+  color: #181818;
+}
+
+.card:hover {
+  transform: scale(1.05);
 }
 
 .container-eliminar-btn,
@@ -94,38 +98,51 @@ ul {
 }
 
 .eliminar-btn {
-  background-color: var(--fifth-color);
-  color: white;
+  background-color: #81d2c7;
   border: none;
-  border-radius: 5px;
-  padding: 4px;
+  border-radius: 20px;
+  padding: 0.3rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
   cursor: pointer;
+  transition: ease-in 0.3s;
   font-size: 1.5rem;
 }
 
 .eliminar-formulario-btn {
-  background-color: var(--fifth-color);
+  background-color: #81d2c7;
   border: none;
-  border-radius: 5px;
-  padding: 5px;
-  margin-top: 1rem;
+  border-radius: 20px;
+  padding: 0.3rem;
+  margin-bottom: 1rem;
   cursor: pointer;
-  color: white;
+  transition: ease-in 0.3s;
+}
+
+.eliminar-formulario-btn:hover {
+  background-color: #abebe2;
 }
 
 .registrar-btn {
-  background-color: var(--fifth-color);
-  color: white;
+  background-color: #81d2c7;
   border: none;
-  border-radius: 5px;
-  padding: 4px;
+  border-radius: 20px;
+  padding: 0.3rem;
   margin-top: 1rem;
   cursor: pointer;
+  transition: ease-in 0.3s;
+}
+
+.registrar-btn:hover {
+  background-color: #abebe2;
+}
+
+.eliminar-btn:hover {
+  background-color: #abebe2;
 }
 
 .container-leftright {
+  font-family: "Josefin Sans", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -138,7 +155,7 @@ ul {
 }
 
 .input-group-text {
-  background-color: var(--third-color);
+  background-color: #81d2c7;
   padding: 4px;
   align-items: center;
   justify-content: center;
@@ -149,7 +166,7 @@ ul {
 
 .form-control {
   height: 1.5rem;
-  border: 1px solid var(--third-color);
+  border: none;
   border-radius: 0px 10px 10px 0px;
 }
 
@@ -168,4 +185,100 @@ ul {
 
 .card-img {
   max-width: 100px;
+}
+
+.paginacion {
+  font-family: "Josefin Sans", sans-serif;
+  display: flex;
+  background-color: #416788;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  gap: 3rem;
+  color: white;
+}
+
+.paginacion a {
+  color: white;
+}
+
+.paginacion-categorias {
+  font-family: "Josefin Sans", sans-serif;
+  display: flex;
+  background-color: #416788;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  gap: 3rem;
+  color: white;
+}
+
+.paginacion-categorias a {
+  color: white;
+}
+
+.card-cart {
+  font-family: "Josefin Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+  border: none;
+  min-width: 30rem;
+  max-width: 30rem;
+  border-radius: 20px;
+  transition: transform 0.3s;
+  background: linear-gradient(135deg, #416788, #7389ae);
+  color: #fff;
+}
+
+.card-header-code-cart {
+  text-align: center;
+  background-color: #81d2c7;
+  padding: 0.3rem;
+  border-radius: 20px 20px 0px 0px;
+  color: #181818;
+}
+
+.card-cart:hover {
+  transform: scale(1.05);
+}
+
+.cart-precio {
+  display: flex;
+  justify-content: space-around;
+}
+
+.cart-product {
+  display: flex;
+  justify-content: space-around;
+}
+
+.cart-category {
+  text-align: center;
+}
+
+.card-img-cart {
+  max-width: 100px;
+}
+
+.card-img-container {
+  display: flex;
+  justify-content: center;
+}
+
+.cart-total {
+  text-align: center;
+}
+
+.icon {
+  color: black;
+  font-size: 1.5rem;
+}
+
+.card-product {
+  text-decoration: none;
+  color: white;
 }

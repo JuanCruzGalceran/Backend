@@ -1,0 +1,37 @@
+<h1 class="titulo">Listado de Carritos</h1>
+<div class="container-lista">
+    {{#each carts}}
+    <a href="/carts/{{this._id}}">
+        <div class="card-cart">
+        <ul>
+            <li>
+            <div class="card-header-code-cart">
+                <p><i class="bi bi-cart-fill icon"></i> {{this._id}}</p>
+            </div>
+            <p class="cart-category">Cantidad de categorias de productos:
+                {{this.products.length}}</p>
+            <hr />
+            {{#each this.products}}
+                <div class="card-img-container">
+                    <img
+                        class="card-img-cart"
+                        src="{{this.product.thumbnail}}"
+                        alt="{{this.product.title}}"
+                    />
+                    </div>
+                <div class="cart-product">
+                    <p>{{this.product.title}}</p>
+                    <p>$ {{this.product.price}}</p>
+                    </div>
+                    <div class="cart-precio">
+                    <p>Cantidad: {{this.quantity}}</p>
+                    <p>Subtotal: $ {{subtotal this.product.price this.quantity}}</p>
+                </div>
+                <hr />
+            {{/each}}
+            </li>
+        </ul>
+        </div>
+    </a>
+    {{/each}}
+</div>

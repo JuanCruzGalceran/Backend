@@ -1,27 +1,71 @@
 <div class="container-general">
-    <h1 class="titulo">PRODUCTS</h1>
-    <div class="container-lista">
-        {{#each listadeproductos}}
+  <h1 class="titulo">PRODUCTS</h1>
+  <div class="paginacion-categorias">
+    <a href="/?query=buzo">Buzos</a>
+    <a href="/?query=zapatilla">Zapatillas</a>
+    <a href="/?query=remera">Remeras</a>
+    <a href="/?sort=asc">Sort by asc</a>
+    <a href="/?sort=desc">Sort by desc</a>
+  </div>
+  <div class="container-lista">
+    {{#each listadeproductos}}
+      <a href="/products/{{this._id}}" class="card-product">
         <div class="card">
-            <div class="card-header">
-                <div class="card-header-code">
-                    <i class="bi bi-tag"></i> Code: {{this.code}}
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">{{this.title}}</h3>
-                    <ul class="card-text">
-                        <li><i class="bi bi-file-text"></i> Description: {{this.description}}</li>
-                        <li><i class="bi bi-currency-dollar"></i> Price: ${{this.price}}</li>
-                        <li><i class="bi bi-grid"></i> Category: {{this.category}}</li>
-                        <li><i class="bi bi-check-circle"></i> Status: {{this.status}}</li>
-                        <li><i class="bi bi-box"></i> Stock: {{this.stock}}</li>
-                    </ul>
-                <div class="container-img">
-                    <img src="{{this.thumbnail}}" alt="{{this.title}}" class="card-img">
-                </div>
-                </div>
+          <div class="card-header">
+            <div class="card-header-code">
+              <i class="bi bi-tag"></i>
+              Code:
+              {{this.code}}
             </div>
+            <div class="card-body">
+              <h3 class="card-title">{{this.title}}</h3>
+              <ul>
+                <li><i class="bi bi-file-text"></i>
+                  Description:
+                  {{this.description}}</li>
+                <li><i class="bi bi-currency-dollar"></i>
+                  Price: ${{this.price}}</li>
+                <li><i class="bi bi-grid"></i> Category: {{this.category}}</li>
+                <li><i class="bi bi-check-circle"></i>
+                  Status:
+                  {{this.status}}</li>
+                <li><i class="bi bi-box"></i> Stock: {{this.stock}}</li>
+              </ul>
+              <div class="container-img">
+                <img
+                  src="{{this.thumbnail}}"
+                  alt="{{this.title}}"
+                  class="card-img"
+                />
+              </div>
+              <button
+                class="agregar-btn"
+                type="submit"
+                id="add-btn"
+                onclick="agregarAlCarrito('{{this._id}}')"
+                value="{{this._id}}"
+              >Agregar al carrito</button>
+            </div>
+          </div>
         </div>
-        {{/each}}
-    </div>
+      </a>
+    {{/each}}
+  </div>
+  <div class="paginacion">
+    {{#if hasPrevPage}}
+      <a href="/?pagina=1">Primera pagina</a>
+    {{/if}}
+    {{#if hasPrevPage}}
+      <a href="/?pagina={{prevPage}}">Pagina anterior</a>
+    {{/if}}
+    <p>Pagina {{page}}</p>
+    {{#if hasNextPage}}
+      <a href="/?pagina={{nextPage}}">Pagina siguiente</a>
+    {{/if}}
+    {{#if hasNextPage}}
+      <a href="/?pagina={{totalPages}}">Ultima pagina</a>
+    {{/if}}
+  </div>
 </div>
+
+<script src="/js/home.js"></script>

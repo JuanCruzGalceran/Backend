@@ -1,0 +1,28 @@
+<div class="container-general">
+    <h1 class="titulo">Product detail</h1>
+    <div class="container-lista">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-header-code">
+                    <i class="bi bi-tag"></i> Code: {{product.code}}
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{product.title}}</h3>
+                    <ul>
+                        <li><i class="bi bi-file-text"></i> Description: {{product.description}}</li>
+                        <li><i class="bi bi-currency-dollar"></i> Price: ${{product.price}}</li>
+                        <li><i class="bi bi-grid"></i> Category: {{product.category}}</li>
+                        <li><i class="bi bi-check-circle"></i> Status: {{product.status}}</li>
+                        <li><i class="bi bi-box"></i> Stock: {{product.stock}}</li>
+                    </ul>
+                <div class="container-img">
+                    <img src="{{product.thumbnail}}" alt="{{product.title}}" class="card-img">
+                </div>
+                <button class="agregar-btn" type="submit" id="add-btn" onclick="agregarAlCarrito('{{product._id}}')" value="{{product._id}}">Agregar al carrito</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/home.js"></script>

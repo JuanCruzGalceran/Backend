@@ -58,7 +58,7 @@ cartRouter.post("/:cid/product/:pid", async (req, res) => {
     }
 });
 
-cartRouter.delete('/:cid/products/:pid', async (req, res) => {
+cartRouter.delete('/:cid/product/:pid', async (req, res) => {
     try {
         let cartId = req.params.cid;
         let productId = req.params.pid;

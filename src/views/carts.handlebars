@@ -1,16 +1,17 @@
+{{>navbar}}
 <h1 class="titulo">Listado de Carritos</h1>
-<div class="container-lista">
+<div class="container-lista center">
     {{#each carts}}
     <a href="/carts/{{this._id}}">
         <div class="card-cart">
-        <ul>
+        <ul class="cart-lista">
             <li>
             <div class="card-header-code-cart">
                 <p><i class="bi bi-cart-fill icon"></i> {{this._id}}</p>
             </div>
             <p class="cart-category">Cantidad de categorias de productos:
                 {{this.products.length}}</p>
-            <hr />
+            {{!-- <hr />
             {{#each this.products}}
                 <div class="card-img-container">
                     <img
@@ -28,7 +29,7 @@
                     <p>Subtotal: $ {{subtotal this.product.price this.quantity}}</p>
                 </div>
                 <hr />
-            {{/each}}
+            {{/each}} --}}
             </li>
         </ul>
         </div>

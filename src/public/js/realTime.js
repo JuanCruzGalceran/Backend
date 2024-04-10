@@ -10,30 +10,30 @@ function updateProductList(productList) {
   let productosHTML = "";
 
   productList.forEach(product => {
-    const thumbnailUrl = product.thumbnail
-      ? product.thumbnail
-      : "https://img.freepik.com/vector-gratis/ilustracion-icono-galeria_53876-27002.jpg";
+    // const thumbnailUrl = product.thumbnails.length > 0 ? product.thumbnails[0].url : 'https://img.freepik.com/vector-gratis/ilustracion-icono-galeria_53876-27002.jpg';
     productosHTML += `
           <div class="card">
-            <div class="card-header-code">code: ${product.code}</div>
+            <div class="card-content">
+              <div class="img-container">
+                <img class="card-img" src="${product.thumbnail}" alt="${product.title}">
+              </div>
               <div class="card-body">
-                  <h4 class="card-title">${product.title}</h4>
+                  <h4 class="card-title">${capitalize(product.title)}</h4>
                     <ul class="card-text">
-                      <li>Id: ${product._id}</li>
+                      <li>ID: ${product._id}</li>
                       <li>Description: ${product.description}</li>
                       <li>Price: $${product.price}</li>
                       <li>Category: ${product.category}</li>
                       <li>Status: ${product.status}</li>
                       <li>Stock: ${product.stock}</li>
+                      <li>Code: ${product.code}</li>
                     </ul>
-                    <div class="img-container">
-                      <img class="card-img" src="${thumbnailUrl}" alt="${product.title}">
-                    </div>
+
               </div>
               <div class="container-eliminar-btn">
-              <button type="button" class="eliminar-btn" onclick="deleteProduct('${String(
-                product._id
-              )}')"><i class="bi bi-trash"></i></button>
+                <button type="button" class="eliminar-btn" onclick="deleteProduct('${String(
+                  product._id
+                )}')"><i class="bi bi-trash"></i></button>
               </div>
             </div>
           </div>
@@ -79,4 +79,10 @@ document.getElementById("delete-btn").addEventListener("click", function () {
 
 function deleteProduct(productId) {
   socketClient.emit("deleteProduct", productId);
+}
+
+function capitalize(str) {
+  return str.toLowerCase().replace(/(?:^|\s)\S/g, function (char) {
+    return char.toUpperCase();
+  });
 }

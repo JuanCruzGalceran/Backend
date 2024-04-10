@@ -1,0 +1,19 @@
+<div class="container-login">
+    <form class="form-login" action="/api/sessions/login" method="post">
+        <div id="mensaje"></div>
+        <input type="email" name="email" placeholder="email" id="email" />
+        <input
+        type="password"
+        name="password"
+        placeholder="contraseña"
+        id="password"
+        />
+        <input class="submit" type="submit" value="Ingresar" id="submit" />
+    </form>
+    <div class="registrate-container">
+        <p>¿No tienes cuenta? <a href="/register"><strong class="registrate">Registrate</strong></a></p>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<script src="/js/login.js"></script>

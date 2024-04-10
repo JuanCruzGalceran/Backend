@@ -1,5 +1,6 @@
 body {
-  background-color: #e0e0e2;
+  background-color: #f5f5f5;
+  font-family: "Montserrat", sans-serif;
 }
 
 .container-general {
@@ -12,10 +13,11 @@ body {
   align-items: center;
   justify-content: space-around;
   margin-bottom: 2rem;
+  min-width: 20%;
 }
 
 i {
-  color: #7389ae;
+  color: black;
 }
 
 .container-formularios {
@@ -25,47 +27,63 @@ i {
 }
 
 .container-form {
-  background: linear-gradient(135deg, #416788, #7389ae);
+  background: linear-gradient(135deg, #ff5722, #ff9800);
   padding: 2rem;
   border-radius: 20px;
   color: #fff;
+  width: 100%;
 }
 
 .container-eliminar {
-  background: linear-gradient(135deg, #416788, #7389ae);
+  background: linear-gradient(135deg, #ff5722, #ff9800);
   padding: 2rem;
   border-radius: 20px;
   color: #fff;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .titulo {
-  font-family: "Kanit", sans-serif;
   text-align: center;
 }
 
 .container-lista {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: start;
   flex-wrap: wrap;
   gap: 2rem;
 }
 
 .card {
-  font-family: "Josefin Sans", sans-serif;
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   border: none;
   min-width: 20rem;
-  max-width: 20rem;
   border-radius: 20px;
   transition: transform 0.3s;
-  background: linear-gradient(135deg, #416788, #7389ae);
+  background: linear-gradient(135deg, #ff5722, #ff9800);
   color: #fff;
 }
 
+.card-content {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  border: none;
+  border-radius: 20px;
+  color: #fff;
+  padding: 2rem;
+}
+
 .card-title {
-  text-align: center;
+  margin: 0;
+  margin-bottom: 2rem;
 }
 
 ul {
@@ -75,30 +93,33 @@ ul {
 }
 
 .titulo-formularios {
-  font-family: "Josefin Sans", sans-serif;
   text-align: center;
 }
 
 .card-header-code {
   text-align: center;
-  background-color: #81d2c7;
+  background-color: #f9a825;
   padding: 0.3rem;
   border-radius: 20px 20px 0px 0px;
   color: #181818;
 }
 
 .card:hover {
-  transform: scale(1.05);
 }
 
-.container-eliminar-btn,
+.container-eliminar-btn {
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+}
+
 .container-registrar-btn {
   display: flex;
   justify-content: center;
 }
 
 .eliminar-btn {
-  background-color: #81d2c7;
+  background-color: #f9a825;
   border: none;
   border-radius: 20px;
   padding: 0.3rem;
@@ -110,7 +131,7 @@ ul {
 }
 
 .eliminar-formulario-btn {
-  background-color: #81d2c7;
+  background-color: #f9a825;
   border: none;
   border-radius: 20px;
   padding: 0.3rem;
@@ -120,11 +141,11 @@ ul {
 }
 
 .eliminar-formulario-btn:hover {
-  background-color: #abebe2;
+  background-color: #ffb74d;
 }
 
 .registrar-btn {
-  background-color: #81d2c7;
+  background-color: #f9a825;
   border: none;
   border-radius: 20px;
   padding: 0.3rem;
@@ -134,15 +155,14 @@ ul {
 }
 
 .registrar-btn:hover {
-  background-color: #abebe2;
+  background-color: #ffb74d;
 }
 
 .eliminar-btn:hover {
-  background-color: #abebe2;
+  background-color: #ffb74d;
 }
 
 .container-leftright {
-  font-family: "Josefin Sans", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -155,7 +175,7 @@ ul {
 }
 
 .input-group-text {
-  background-color: #81d2c7;
+  background-color: #f9a825;
   padding: 4px;
   align-items: center;
   justify-content: center;
@@ -175,6 +195,7 @@ ul {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-right: 2rem;
 }
 
 .container-img {
@@ -183,14 +204,34 @@ ul {
   justify-content: center;
 }
 
+.unset-width {
+  width: unset;
+}
+
 .card-img {
-  max-width: 100px;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
 }
 
 .paginacion {
-  font-family: "Josefin Sans", sans-serif;
   display: flex;
-  background-color: #416788;
+  background-color: #ff5722;
   border-radius: 20px;
   justify-content: center;
   align-items: center;
@@ -204,25 +245,23 @@ ul {
 }
 
 .paginacion-categorias {
-  font-family: "Josefin Sans", sans-serif;
+  min-width: 20%;
   display: flex;
-  background-color: #416788;
+  flex-direction: column;
+  background-color: #ff5722;
   border-radius: 20px;
-  justify-content: center;
-  align-items: center;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
   padding: 1rem;
-  gap: 3rem;
+  gap: 1rem;
   color: white;
 }
 
 .paginacion-categorias a {
   color: white;
+  width: fit-content;
+  text-decoration: underline;
 }
 
 .card-cart {
-  font-family: "Josefin Sans", sans-serif;
   display: flex;
   flex-direction: column;
   border: none;
@@ -230,20 +269,25 @@ ul {
   max-width: 30rem;
   border-radius: 20px;
   transition: transform 0.3s;
-  background: linear-gradient(135deg, #416788, #7389ae);
+  background: linear-gradient(135deg, #ff5722, #ff9800);
   color: #fff;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+}
+
+.card-link {
+  background: linear-gradient(135deg, #ff5722, #ff9800);
+  width: 100%;
+  max-width: 20rem;
+  border-radius: 20px;
 }
 
 .card-header-code-cart {
   text-align: center;
-  background-color: #81d2c7;
+  background-color: #f9a825;
   padding: 0.3rem;
   border-radius: 20px 20px 0px 0px;
   color: #181818;
-}
-
-.card-cart:hover {
-  transform: scale(1.05);
 }
 
 .cart-precio {
@@ -261,7 +305,9 @@ ul {
 }
 
 .card-img-cart {
-  max-width: 100px;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
 }
 
 .card-img-container {
@@ -270,7 +316,14 @@ ul {
 }
 
 .cart-total {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
+  background-color: #181818;
+  padding: 1rem;
+  border-radius: 0rem 0rem 1rem 1rem;
 }
 
 .icon {
@@ -278,7 +331,154 @@ ul {
   font-size: 1.5rem;
 }
 
-.card-product {
+a {
   text-decoration: none;
+}
+
+.agregar-btn {
+  background-color: #f9a825;
+  border: none;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+  padding: 0.3rem;
+  cursor: pointer;
+  transition: ease-in 0.3s;
+  z-index: 99;
+  pointer-events: auto;
+}
+
+.agregar-btn:hover {
+  background-color: #ffb74d;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  z-index: 98;
+}
+
+.cart-lista {
+  padding: 0;
+}
+
+.price {
+  text-align: center;
+}
+
+.list-product {
+  padding: 0;
+}
+
+.icono-price {
   color: white;
+}
+
+.sort {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-sort {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.page {
+  font-weight: bolder;
+}
+
+.toast {
+}
+
+.mt-2rem {
+  margin-top: 2rem;
+}
+
+.mt-1rem {
+  margin-top: 1rem;
+}
+
+.card-list-text {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  gap: 4rem;
+  background: linear-gradient(135deg, #ff5722, #ff9800);
+  padding: 2rem;
+  color: white;
+  justify-content: end;
+}
+
+a {
+  color: white;
+}
+
+.user {
+  display: flex;
+  gap: 1rem;
+}
+
+.username {
+  color: black;
+}
+
+.container-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+  /* place-content: center; */
+}
+
+.form-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.submit {
+  padding: 0.4rem;
+  border-radius: 1rem;
+  background-color: #ff5722;
+  color: white;
+  cursor: pointer;
+  transition: ease 0.2s;
+}
+
+.submit:hover {
+  background-color: #ff9800;
+}
+
+.registrate-container {
+}
+
+.registrate {
+  color: #ff5722;
+}
+
+.realtime-main-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.products-main-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding: 1rem;
 }

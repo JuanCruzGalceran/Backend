@@ -1,26 +1,16 @@
-:root {
-  --primary-color: white; /* Por ejemplo, define el color primario */
-  --secondary-color: #ebebd3; /* Define el color secundario */
-  --third-color: #f4d35e;
-  --fourth-color: #ee964b;
-  --fifth-color: #3483fa;
-  --primary-font: "Montserrat", sans-serif;
-  --font-color: black;
-}
-
 #chat-header {
   display: flex;
   align-items: center;
-  font-family: var(--primary-font);
+  font-family: "Kanit", sans-serif;
   justify-content: space-between;
-  background-color: var(--third-color);
+  background-color: #81d2c7;
   color: black;
   border-radius: 20px 20px 0px 0px;
   padding: 10px 20px;
 }
 
 .sender-name {
-  font-family: var(--primary-font);
+  font-family: "Josefin Sans", sans-serif;
 }
 
 #customer-service-logo {
@@ -32,7 +22,7 @@
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
-  background: var(--primary-color);
+  background: linear-gradient(135deg, #416788, #7389ae);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 20px;
 }
@@ -52,11 +42,11 @@
   padding: 10px;
   margin-bottom: 20px;
   border-radius: 0px 0px 20px 20px;
-  background: var(--primary-color);
+  background: linear-gradient(135deg, #416788, #7389ae);
 }
 
 .message {
-  font-family: var(--primary-font);
+  font-family: "Josefin Sans", sans-serif;
   margin-bottom: 10px;
   display: flex;
   flex-direction: column;
@@ -79,7 +69,7 @@
 #formulario {
   display: flex;
   align-items: center;
-  background-color: var(--third-color);
+  background-color: #81d2c7;
   padding: 10px;
   border: 1px solid #f0f0f0;
   border-radius: 7px;
@@ -95,8 +85,8 @@
 }
 
 #formulario button {
-  font-family: var(--primary-font);
-  background-color: var(--fifth-color);
+  font-family: "Josefin Sans", sans-serif;
+  background-color: #416788;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -107,15 +97,15 @@
   margin-right: 10px;
 }
 
+#formulario button:hover {
+  background-color: #7389ae;
+}
+
 .swal2-popup {
-  font-family: var(--primary-font);
+  font-family: "Josefin Sans", sans-serif;
   border-radius: 20px;
-  color: black;
-  background: var(--third-color);
+  color: #f0f0f0;
+  background: linear-gradient(135deg, #416788, #7389ae);
   border: solid 1px #f0f0f0;
 }
 
-
-div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
-  background-color: var(--fifth-color) !important
-}

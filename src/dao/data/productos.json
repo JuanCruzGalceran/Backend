@@ -1,0 +1,68 @@
+[
+  {
+    "id": 11,
+    "title": "Nike Swoosh",
+    "description": "Una zapatilla blanca",
+    "code": "2425",
+    "price": "300",
+    "status": true,
+    "stock": "200",
+    "category": "Zapatillas",
+    "thumbnail":"https://qph.cf2.quoracdn.net/main-qimg-5d301b44c6c3b6bf4e404a81f0737d0d"
+  },
+  {
+    "id": 12,
+    "title": "Nike Pi",
+    "description": "Otra zapatilla",
+    "code": "2426",
+    "price": "400",
+    "status": true,
+    "stock": "200",
+    "category": "Zapatillas",
+    "thumbnail":"https://media.revistagq.com/photos/6313035442bb0fbbf38467fe/master/w_320%2Cc_limit/DQ0581-100_274327722_D_A_1X1_110767.PNG"
+  },
+  {
+    "id": 13,
+    "title": "Remera Nike",
+    "description": "Una remera",
+    "code": "1415",
+    "price": "100",
+    "status": true,
+    "stock": "500",
+    "category": "Remeras",
+    "thumbnail":"https://parspng.com/wp-content/uploads/2022/07/Tshirtpng.parspng.com-5.png"
+  },
+  {
+    "id": 14,
+    "title": "Remera Adidas",
+    "description": "Una remera adidas prueba de varias imagenes",
+    "code": "1416",
+    "price": "100",
+    "status": true,
+    "stock": "500",
+    "category": "Remeras",
+    "thumbnail":"https://cdn.pixabay.com/photo/2017/06/20/17/11/t-shirt-2423804_960_720.png"
+  },
+  {
+    "id": 15,
+    "title": "Gorra Yankees",
+    "description": "Una gorra",
+    "code": "1010",
+    "price": "25",
+    "status": true,
+    "stock": "1000",
+    "category": "Gorras",
+    "thumbnail":"https://www.pngall.com/wp-content/uploads/15/Yankee-Hat-PNG-File.png"
+  },
+  {
+    "id": 16,
+    "title": "Gorra Chicago Bulls",
+    "description": "Una gorra de chicago",
+    "code": "1011",
+    "price": "25",
+    "status": true,
+    "stock": "1000",
+    "category": "Gorras",
+    "thumbnail":"https://chibullsdigital.com/bullshatseries/2122/images/Farfan_LEFT.png"
+  }
+]

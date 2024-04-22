@@ -1,16 +1,17 @@
 <div class="container-login">
-    <form class="form-login" id="registerForm" action="/api/sessions/register" method="post">
-        {{#if error}}
-            <div style="font-weight: bold; color:red;">{{error}}</div>
-        {{/if}}
-        <input type="text" name="username" placeholder="username">
-        <input type="email" name="email" placeholder="email">
-        <input type="password" name="password" placeholder="contraseña">
-        <br>
-        <button class="submit" type="submit">Registrar</button>
-    </form>
+  <form class="form-login" id="registerForm" action="/api/sessions/register" method="post">
+    {{#if error}}
+      <div style="font-weight: bold; color:red;">{{error}}</div>
+    {{/if}}
+    <input type="text" name="username" placeholder="username" />
+    <input type="text" name="first_name" placeholder="nombre" />
+    <input type="text" name="last_name" placeholder="apellido" />
+    <input type="number" name="age" placeholder="edad" />
+    <input type="email" name="email" placeholder="email" />
+    <input type="password" name="password" placeholder="contraseña" />
+    <br />
+    <button class="submit" type="submit">Registrar</button>
+  </form>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-
-

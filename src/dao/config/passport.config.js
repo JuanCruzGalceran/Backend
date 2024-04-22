@@ -2,8 +2,10 @@ import passport from "passport";
 import gitgub from "passport-github2";
 import local from "passport-local";
 import { creaHash, validaPassword } from "../../utils.js";
+import CartManager from "../controllers/Mongo/cartManagerMongo.js";
 import { UsuariosManagerMongo } from "../controllers/Mongo/userManagerMongo.js";
 const usuariosManager = new UsuariosManagerMongo();
+const cartManager = new CartManager();
 
 export const initPassport = () => {
   passport.use(
@@ -30,8 +32,20 @@ export const initPassport = () => {
             rol = "admin";
           }
 
+          const newCart = await cartManager.createCart();
+          const cartId = newCart._id;
+
           password = creaHash(password);
-          let nuevoUsuario = await usuariosManager.create({ username, email, password, rol });
+          let nuevoUsuario = await usuariosManager.create({
+            username,
+            email,
+            password,
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            age: req.body.age,
+            cart: cartId,
+            rol,
+          });
           return done(null, nuevoUsuario);
         } catch (error) {
           return done(error);

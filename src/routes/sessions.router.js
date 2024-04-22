@@ -103,3 +103,13 @@ router.get("/callbackGithub", passport.authenticate("github", { failureRedirect:
   // });
   return res.redirect("http://localhost:8080/products");
 });
+
+router.get("/current", (req, res) => {
+  if (req.session.usuario) {
+    res.setHeader("Content-Type", "application/json");
+    return res.status(200).json(req.session.usuario);
+  } else {
+    res.setHeader("Content-Type", "application/json");
+    return res.status(401).json({ error: `No hay usuario logueado` });
+  }
+});

@@ -1,18 +1,16 @@
 <div class="container-login">
-    <form class="form-login" action="/api/sessions/login" method="post">
-        <div id="mensaje"></div>
-        <input type="email" name="email" placeholder="email" id="email" />
-        <input
-        type="password"
-        name="password"
-        placeholder="contraseña"
-        id="password"
-        />
-        <input class="submit" type="submit" value="Ingresar" id="submit" />
-    </form>
-    <div class="registrate-container">
-        <p>¿No tienes cuenta? <a href="/register"><strong class="registrate">Registrate</strong></a></p>
-    </div>
+  <form class="form-login" action="/api/sessions/login" method="post">
+    <div id="mensaje"></div>
+    <input type="email" name="email" placeholder="email" id="email" />
+    <input type="password" name="password" placeholder="contraseña" id="password" />
+    <input class="submit" type="submit" value="Ingresar" id="submit" />
+  </form>
+  <div>
+    <a style="color:black; border:1px solid black" href="/api/sessions/github">Inicia sesion con github</a>
+  </div>
+  <div class="registrate-container">
+    <p>¿No tienes cuenta? <a href="/register"><strong class="registrate">Registrate</strong></a></p>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>

@@ -1,4 +1,5 @@
 export const auth = (req, res, next) => {
+    let token = null
     if (!req.session.usuario) {
         return res.redirect("http://localhost:8080/")
     }

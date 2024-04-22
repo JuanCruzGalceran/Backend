@@ -104,9 +104,6 @@ ul {
   color: #181818;
 }
 
-.card:hover {
-}
-
 .container-eliminar-btn {
   display: flex;
   justify-content: center;
@@ -390,9 +387,6 @@ a {
   font-weight: bolder;
 }
 
-.toast {
-}
-
 .mt-2rem {
   margin-top: 2rem;
 }
@@ -458,9 +452,6 @@ a {
   background-color: #ff9800;
 }
 
-.registrate-container {
-}
-
 .registrate {
   color: #ff5722;
 }
@@ -481,4 +472,11 @@ a {
   justify-content: flex-start;
   gap: 1rem;
   padding: 1rem;
+}
+
+.general-buttons {
+  border: 1px solid transparent;
+  border-radius: 5px;
+  width: fit-content;
+  padding: 8px 4px;
 }

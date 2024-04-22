@@ -31,7 +31,7 @@ function updateProductList(productList) {
 
               </div>
               <div class="container-eliminar-btn">
-                <button type="button" class="eliminar-btn" onclick="deleteProduct('${String(
+                <button type="button" class="eliminar-btn general-buttons" onclick="deleteProduct('${String(
                   product._id
                 )}')"><i class="bi bi-trash"></i></button>
               </div>

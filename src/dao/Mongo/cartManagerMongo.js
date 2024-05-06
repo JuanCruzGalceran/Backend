@@ -1,4 +1,4 @@
-import CartModel from "../../models/carts.model.js";
+import CartModel from "../models/carts.model.js";
 
 class CartManager {
   async createCart() {
@@ -40,7 +40,6 @@ class CartManager {
   async addProductToCart(cartId, productId, quantity = 1) {
     try {
       const cart = await this.getCartById(cartId);
-      console.log("debugJ cart products", cart.products);
       const existeProducto = cart.products.find(item => item.product?.equals(productId));
 
       if (existeProducto) {

@@ -77,15 +77,3 @@ class CartManager {
 
 export default CartManager;
 
-
-// const carts = new CartManager(rutaCarts);
-// const addNewCart = async () => {
-//     await carts.addCart();
-// };
-// addNewCart()
-//     .then(() => {
-//         console.log('Nuevo carrito creado correctamente');
-//     })
-//     .catch((error) => {
-//         console.error(`Error al crear el nuevo carrito: ${error.message}`);
-//     });

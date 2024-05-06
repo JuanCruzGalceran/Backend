@@ -97,24 +97,7 @@ class ProductManager {
 
 export default ProductManager;
 
-// ************************************
-// products.addProduct({
-//     title: "Zapatilla 02",
-//     description: "Esta es la zapatilla 02",
-//     price: 210,
-//     thumbnail: "Sin imagen",
-//     code: "2",
-//     stock: 25
-// });
 
-// console.log(products.getProducts());
-// console.log(products.getProductById(3));
-
-// products.updateProduct(3, { price: 20, stock: 150 });
-// console.log(products.getProducts());
-
-// products.deleteProduct(7);
-// console.log(products.getProducts());
 
 
 

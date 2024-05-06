@@ -1,6 +1,8 @@
+const PUERTO = window.location.port || 8080;
+
 function agregarAlCarrito(productoId, cartId) {
   console.log("Agregando producto al carrito", cartId, productoId);
-  fetch(`http://localhost:8080/api/carts/${cartId}/product/${productoId}/`, {
+  fetch(`http://localhost:${PUERTO}/api/carts/${cartId}/product/${productoId}/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

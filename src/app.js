@@ -9,14 +9,16 @@ import vistasRouter from "./routes/vistas.router.js";
 import { router as sessionsRouter } from "./routes/sessions.router.js";
 import socketProducts from "./listeners/socketProducts.js";
 import socketChat from "./listeners/socketChat.js";
-import connectToDB from "./dao/config/configServer.js";
+import connectToDB from "./config/configServer.js";
 import session from "express-session";
 import MongoStore from "connect-mongo";
-import { initPassport } from "./dao/config/passport.config.js";
+import { initPassport } from "./config/passport.config.js";
 import passport from "passport";
 import jwt from "jsonwebtoken";
+import { config } from "./config/config.js";
 
-const PORT = 8080;
+const PORT = config.PORT;
+
 const app = express();
 
 app.engine("handlebars", engine());
@@ -32,7 +34,7 @@ app.use(
     resave: true,
     saveUninitialized: true,
     store: MongoStore.create({
-      mongoUrl: "mongodb+srv://gjuancruz:juankadel77@cluster0.hspesbp.mongodb.net/ecommerce?retryWrites=true&w=majority&appName=Cluster0",
+      mongoUrl: config.MONGO_URL,
       ttl: 3000,
     }),
   })

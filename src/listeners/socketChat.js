@@ -1,4 +1,4 @@
-import MessageManager from "../dao/controllers/Mongo/messageManagerMongo.js"
+import MessageManager from "../dao/Mongo/messageManagerMongo.js"
 
 const messageManager = new MessageManager()
 

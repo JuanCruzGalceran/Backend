@@ -1,9 +1,10 @@
 import passport from "passport";
 import gitgub from "passport-github2";
 import local from "passport-local";
-import { creaHash, validaPassword } from "../../utils.js";
-import CartManager from "../controllers/Mongo/cartManagerMongo.js";
-import { UsuariosManagerMongo } from "../controllers/Mongo/userManagerMongo.js";
+import { creaHash, validaPassword } from "../utils.js";
+import CartManager from "../dao/Mongo/cartManagerMongo.js";
+import { UsuariosManagerMongo } from "../dao/Mongo/userManagerMongo.js";
+import { config } from "./config.js";
 const usuariosManager = new UsuariosManagerMongo();
 const cartManager = new CartManager();
 
@@ -58,9 +59,9 @@ export const initPassport = () => {
     "github",
     new gitgub.Strategy(
       {
-        clientID: "Iv1.0f4fe73856bf8fb0",
-        clientSecret: "293ab27c55ee1d411d91ec6bcbfb44410c9c30fb",
-        callbackURL: "http://localhost:8080/api/sessions/callbackGithub",
+        clientID: config.CLIENTID,
+        clientSecret: config.CLIENTSECRET,
+        callbackURL: config.CALLBACKURL,
       },
       async function (accessToken, refreshToken, profile, done) {
         try {
@@ -86,7 +87,6 @@ export const initPassport = () => {
       },
       async (username, password, done) => {
         try {
-          console.log({ username });
           let usuario = await usuariosManager.getBy({ email: username });
           if (!usuario) {
             return done(null, false);

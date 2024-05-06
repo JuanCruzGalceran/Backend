@@ -1,4 +1,4 @@
-import ProductManager from "../dao/controllers/Mongo/productManagerMongo.js";
+import ProductManager from "../dao/Mongo/productManagerMongo.js";
 import  __dirname  from "../utils.js";
 const products = new ProductManager(__dirname+'/data/productos.json')
 

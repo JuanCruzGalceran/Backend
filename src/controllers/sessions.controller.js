@@ -1,8 +1,10 @@
-import { UsuariosManagerMongo } from "../dao/Mongo/userManagerMongo.js";
+import UsersManager from "../dao/Mongo/userManagerMongo.js";
+import { userRepository } from "../services/services.js";
 import { creaHash, validaPassword } from "../utils.js";
 import { config } from "../config/config.js";
+import UserDTO from "../services/dto/users.dto.js";
 
-let usuariosManager = new UsuariosManagerMongo();
+let usuariosManager = new UsersManager();
 
 export const register = async (req, res) => {
   let { username, email, password } = req.body;
@@ -11,7 +13,6 @@ export const register = async (req, res) => {
   }
 
   try {
-
     res.redirect(`http://localhost:${config.PORT}/`);
   } catch (error) {
     return res.status(400).json({ error: `Error inseperado` });
@@ -25,7 +26,7 @@ export const login = async (req, res) => {
     return res.status(400).json({ error: `Faltan datos` });
   }
 
-  let usuario = await usuariosManager.getBy({ email });
+  let usuario = await userRepository.getBy({ email });
 
   if (!usuario) {
     res.setHeader("Content-Type", "application/json");
@@ -84,8 +85,9 @@ export const callBackGitHub = (req, res) => {
 
 export const getCurrentSession = (req, res) => {
   if (req.session.usuario) {
+    const usuario = new UserDTO(req.session.usuario);
     res.setHeader("Content-Type", "application/json");
-    return res.status(200).json(req.session.usuario);
+    return res.status(200).json(usuario);
   } else {
     res.setHeader("Content-Type", "application/json");
     return res.status(401).json({ error: `No hay usuario logueado` });

@@ -1,9 +1,10 @@
 import { routes } from "../utils.js";
-import ProductManager from "../dao/Mongo/productManagerMongo.js";
+// import ProductManager from "../dao/Mongo/productManagerMongo.js";
 import { productsModel } from "../dao/models/products.model.js";
+import { productRepository } from "../services/services.js";
 
 const rutaProductos = routes.products;
-const products = new ProductManager(rutaProductos);
+// const products = new ProductManager(rutaProductos);
 
 export const getAllProducts = async (req, res) => {
   let { pagina, limit, query, sort } = req.query;
@@ -65,7 +66,7 @@ export const getAllProducts = async (req, res) => {
 export const getProductById = async (req, res) => {
   try {
     let productId = req.params.pid;
-    let product = await products.getProductById(productId);
+    let product = await productRepository.getProductById(productId);
     res.json({ product });
   } catch (error) {
     res.status(404).json({ error: error.message });
@@ -75,7 +76,7 @@ export const getProductById = async (req, res) => {
 export const addProduct = async (req, res) => {
   try {
     const newProduct = req.body;
-    await products.addProduct(newProduct);
+    await productRepository.addProduct(newProduct);
     res.status(201).json({ message: "Producto creado correctamente" });
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -86,7 +87,7 @@ export const updateProduct = async (req, res) => {
   try {
     const productId = req.params.pid;
     const updatedProduct = req.body;
-    await products.updateProduct(productId, updatedProduct);
+    await productRepository.updateProduct(productId, updatedProduct);
     res.json({ message: "Producto actualizado correctamente" });
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -96,7 +97,7 @@ export const updateProduct = async (req, res) => {
 export const deleteProduct = async (req, res) => {
   try {
     const productId = req.params.pid;
-    await products.deleteProduct(productId);
+    await productRepository.deleteProduct(productId);
     res.json({ message: "Producto eliminado correctamente" });
   } catch (error) {
     res.status(404).json({ error: error.message });

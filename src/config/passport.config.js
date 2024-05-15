@@ -2,11 +2,12 @@ import passport from "passport";
 import gitgub from "passport-github2";
 import local from "passport-local";
 import { creaHash, validaPassword } from "../utils.js";
-import CartManager from "../dao/Mongo/cartManagerMongo.js";
-import { UsuariosManagerMongo } from "../dao/Mongo/userManagerMongo.js";
+// import CartManager from "../dao/Mongo/cartManagerMongo.js";
+// import UsersManager from "../dao/Mongo/userManagerMongo.js";
+import { userRepository, cartRepository } from "../services/services.js";
 import { config } from "./config.js";
-const usuariosManager = new UsuariosManagerMongo();
-const cartManager = new CartManager();
+// const usuariosManager = new UsersManager();
+// const cartManager = new CartManager();
 
 export const initPassport = () => {
   passport.use(
@@ -23,7 +24,7 @@ export const initPassport = () => {
             return done(null, false);
           }
 
-          let existe = await usuariosManager.getBy({ email });
+          let existe = await userRepository.getBy({ email });
           if (existe) {
             return done(null, false);
           }
@@ -33,11 +34,11 @@ export const initPassport = () => {
             rol = "admin";
           }
 
-          const newCart = await cartManager.createCart();
+          const newCart = await cartRepository.createCart();
           const cartId = newCart._id;
 
           password = creaHash(password);
-          let nuevoUsuario = await usuariosManager.create({
+          let nuevoUsuario = await userRepository.create({
             username,
             email,
             password,
@@ -47,6 +48,7 @@ export const initPassport = () => {
             cart: cartId,
             rol,
           });
+
           return done(null, nuevoUsuario);
         } catch (error) {
           return done(error);
@@ -67,9 +69,9 @@ export const initPassport = () => {
         try {
           const name = profile._json.name;
           const email = profile._json.email;
-          const usuario = await usuariosManager.getBy({ email });
+          const usuario = await userRepository.getBy({ email });
           if (!usuario) {
-            await usuariosManager.create({ username: name, email: email, rol: "user", githubProfile: profile });
+            await userRepository.create({ username: name, email: email, rol: "user", githubProfile: profile });
           }
           return done(null, usuario);
         } catch (error) {
@@ -87,7 +89,7 @@ export const initPassport = () => {
       },
       async (username, password, done) => {
         try {
-          let usuario = await usuariosManager.getBy({ email: username });
+          let usuario = await userRepository.getBy({ email: username });
           if (!usuario) {
             return done(null, false);
           }

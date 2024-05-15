@@ -1,9 +1,10 @@
-import ProductManager from "../dao/Mongo/productManagerMongo.js";
+// import ProductManager from "../dao/Mongo/productManagerMongo.js";
+import { productRepository } from "../services/services.js";
 import { productsModel } from "../dao/models/products.model.js";
 import cartModel from "../dao/models/carts.model.js";
 import __dirname from "../utils.js";
 
-const products = new ProductManager();
+// const products = new ProductManager();
 
 export const getProducts = async (req, res) => {
   let { pagina, limit, query, sort } = req.query;
@@ -108,7 +109,7 @@ export const getProductById = async (req, res) => {
     const isAdmin = usuario.rol === "admin";
     const productId = req.params.pid;
     const cartId = req.session.usuario.cart.toString();
-    const product = JSON.parse(JSON.stringify(await products.getProductById(productId)));
+    const product = JSON.parse(JSON.stringify(await productRepository.getProductById(productId)));
     res.setHeader("Content-Type", "text/html");
     res.status(200).render("productDetail", { product, isAdmin, cartId });
   } catch (error) {

@@ -1,11 +1,12 @@
-import CartManager from "../dao/Mongo/cartManagerMongo.js";
+// import CartManager from "../dao/Mongo/cartManagerMongo.js";
 import CartModel from "../dao/models/carts.model.js";
+import { cartRepository } from "../services/services.js";
 
-const cartManager = new CartManager();
+// const cartManager = new CartManager();
 
 export const getCarts = async (req, res) => {
   try {
-    res.json({ carts: await cartManager.getCarts() });
+    res.json({ carts: await cartRepository.getCarts() });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -13,7 +14,7 @@ export const getCarts = async (req, res) => {
 
 export const createCart = async (req, res) => {
   try {
-    let newCart = await cartManager.createCart();
+    let newCart = await cartRepository.createCart();
     res.json(newCart);
   } catch (error) {
     console.error("Error al crear nuevo carrito", error);
@@ -48,7 +49,7 @@ export const addProductToCart = async (req, res) => {
   let quantity = req.body.quantity || 1;
 
   try {
-    const updateCart = await cartManager.addProductToCart(cartId, productId, quantity);
+    const updateCart = await cartRepository.addProductToCart(cartId, productId, quantity);
     res.json(updateCart.products);
   } catch (error) {
     console.error("Error al agregar producto", error);
@@ -60,7 +61,7 @@ export const deleteProductFromCart = async (req, res) => {
   try {
     let cartId = req.params.cid;
     let productId = req.params.pid;
-    const updateCart = await cartManager.deleteProductFromCart(cartId, productId);
+    const updateCart = await cartRepository.deleteProductFromCart(cartId, productId);
     res.json({
       status: "success",
       message: "Producto eliminado del carrito correctamente",
@@ -79,7 +80,7 @@ export const updateCart = async (req, res) => {
   let cartId = req.params.cid;
   let updatedProducts = req.body;
   try {
-    let updatedCart = await cartManager.updateCart(cartId, updatedProducts);
+    let updatedCart = await cartRepository.updateCart(cartId, updatedProducts);
     res.json(updatedCart);
   } catch (error) {
     console.error("Error al actualizar el carrito en cart.router", error);
@@ -95,7 +96,7 @@ export const updateProductQuantity = async (req, res) => {
     let cartId = req.params.cid;
     let productId = req.params.pid;
     const newQuantity = req.body.quantity;
-    let updatedCart = await cartManager.updateProductQuantity(cartId, productId, newQuantity);
+    let updatedCart = await cartRepository.updateProductQuantity(cartId, productId, newQuantity);
     res.json({
       status: "success",
       message: "Cantidad del producto actualizada correctamente",
@@ -113,7 +114,7 @@ export const updateProductQuantity = async (req, res) => {
 export const emptyCart = async (req, res) => {
   try {
     let cartId = req.params.cid;
-    let updatedCart = await cartManager.emptyCart(cartId);
+    let updatedCart = await cartRepository.emptyCart(cartId);
     res.json({
       status: "success",
       message: "Todos los productos del carrito fueron eliminados correctamente",

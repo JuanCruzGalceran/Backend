@@ -1,14 +1,16 @@
 <ul class="navbar">
-    {{#if isAdmin}}
-        <li><a href="/realTimeProducts">Panel de administrador</a></li>
-        <li><a href="/carts">Carts</a></li>
-    {{/if}}
+  {{#if isAdmin}}
+    <li><a href="/realTimeProducts">Panel de administrador</a></li>
+    <li><a href="/carts">Carts</a></li>
+  {{/if}}
+  {{#if isUser}}
     <li><a href="/products">Productos</a></li>
-    <li><a href="/user">Usuario</a></li>
-    <div class="user">
-        <li class="username">Bienvenido: <strong>{{usuario.username}}</strong></li>
-        <li><a href="#" onclick="logout()">Logout</a></li>
-    </div>
+  {{/if}}
+  <li><a href="/user">Usuario</a></li>
+  <div class="user">
+    <li class="username">Bienvenido: <strong>{{usuario.username}}</strong></li>
+    <li><a href="#" onclick="logout()">Logout</a></li>
+  </div>
 </ul>
 
 <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>

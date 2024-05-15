@@ -1,6 +1,5 @@
 import { Router } from "express";
-import { auth } from "../middlewares/auth.js";
-import { admin } from "../middlewares/auth.js";
+import { admin, auth, isUser } from "../middlewares/auth.js";
 import {
   getProducts,
   getAllCarts,
@@ -15,7 +14,7 @@ import {
 
 const vistasRouter = Router();
 
-vistasRouter.get("/products", auth, getProducts);
+vistasRouter.get("/products", auth, isUser, getProducts);
 
 vistasRouter.get("/carts", auth, admin, getAllCarts);
 
@@ -25,7 +24,7 @@ vistasRouter.get("/product/:pid", getProductById);
 
 vistasRouter.get("/realtimeproducts", auth, admin, realTimeProducts);
 
-vistasRouter.get("/chat", chat);
+vistasRouter.get("/chat", isUser, chat);
 
 vistasRouter.get("/register", register);
 

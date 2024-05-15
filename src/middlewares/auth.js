@@ -14,3 +14,10 @@ export const admin = (req, res, next) => {
   }
   next();
 };
+
+export const isUser = (req, res, next) => {
+  if (req.session.usuario.rol === "admin") {
+    return res.redirect(`http://localhost:${config.PORT}/realTimeProducts`);
+  }
+  next();
+};

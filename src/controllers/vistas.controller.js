@@ -10,6 +10,7 @@ export const getProducts = async (req, res) => {
   let { pagina, limit, query, sort } = req.query;
   let usuario = req.session.usuario;
   const isAdmin = usuario.rol === "admin";
+  const isUser = usuario.rol === "user";
   const cartId = req.session.usuario.cart.toString();
 
   if (!pagina) {
@@ -55,6 +56,7 @@ export const getProducts = async (req, res) => {
       cartId,
       usuario,
       isAdmin,
+      isUser,
       totalPages,
       prevPage,
       nextPage,
@@ -140,5 +142,6 @@ export const login = (req, res) => {
 export const user = (req, res) => {
   let usuario = req.session.usuario;
   const isAdmin = usuario.rol === "admin";
-  res.status(200).render("user", { usuario, isAdmin });
+  const isUser = usuario.rol === "user";
+  res.status(200).render("user", { usuario, isAdmin, isUser });
 };

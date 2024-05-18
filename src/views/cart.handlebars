@@ -1,0 +1,37 @@
+{{> navbar}}
+<h1>Tu carrito</h1>
+{{#if userCart.products.length}}
+    <div class="container-lista">
+  {{#each userCart.products}}
+     <div class="card-link">
+    <a href="/product/{{this.product._id}}">
+        <div class="card-header">
+          <div class="card-header-code">
+            <i class="bi bi-tag"></i>
+            Code: {{this.product.code}}
+          </div>
+          <div class="card-content unset-width">
+            <div class="card-body center">
+              <h3 class="card-title">{{this.product.title}}</h3>
+              <ul class="list-product">
+                <li class="price">
+                  <i class="bi bi-currency-dollar icono-price"></i>
+                  {{this.product.price}}
+                </li>
+              </ul>
+              <div class="container-img">
+                <img src="{{this.product.thumbnail}}" alt="{{this.product.title}}" class="card-img" />
+              </div>
+              <p>Quantity {{this.quantity}}</p>
+            </div>
+          </div>
+        </div>
+    </a>
+    </div>
+  {{/each}}
+  <button id="purchase-btn" onclick="finishPurchase('{{cartId}}')" class="agregar-btn general-buttons">Finish purchase</button>
+</div>
+{{else}}
+  <p>El carrito está vacío.</p>
+{{/if}}
+<script src="/js/cart.js"></script>

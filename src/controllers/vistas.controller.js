@@ -145,3 +145,15 @@ export const user = (req, res) => {
   const isUser = usuario.rol === "user";
   res.status(200).render("user", { usuario, isAdmin, isUser });
 };
+
+export const cart = async (req, res) => {
+  let usuario = req.session.usuario;
+  const isAdmin = usuario.rol === "admin";
+  const isUser = usuario.rol === "user";
+  const cartId = req.session.usuario.cart;
+  const userCart = await cartModel
+    .findById(cartId)
+    .populate("products.product", "_id title price description category code stock thumbnail")
+    .lean();
+  res.status(200).render("cart", { userCart, usuario, isAdmin, isUser, cartId });
+};

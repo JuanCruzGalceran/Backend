@@ -10,6 +10,7 @@ import {
   register,
   login,
   user,
+  cart,
 } from "../controllers/vistas.controller.js";
 
 const vistasRouter = Router();
@@ -31,5 +32,7 @@ vistasRouter.get("/register", register);
 vistasRouter.get("/", login);
 
 vistasRouter.get("/user", auth, user);
+
+vistasRouter.get("/cart", auth, cart);
 
 export default vistasRouter;

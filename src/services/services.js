@@ -21,11 +21,11 @@ export const userRepository = new UserRepository(UserManager);
 
 //Repository de tickets
 
-// import TicketManager from "../dao/Mongo/ticketManagerMongo.js";
-// import TicketRepository from "./repository/TicketRepository.js";
+import TicketManager from "../dao/Mongo/ticketManagerMongo.js";
+import TicketRepository from "./repository/TicketRepository.js";
 
-// const ticketManager = new TicketManager();
-// export const ticketRepository = new TicketRepository(ticketManager);
+const ticketManager = new TicketManager();
+export const ticketRepository = new TicketRepository(ticketManager);
 
 //Repository de Mensajes
 import MessageManager from "../dao/Mongo/messageManagerMongo.js";

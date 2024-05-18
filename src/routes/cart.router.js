@@ -11,6 +11,10 @@ import {
   emptyCart,
 } from "../controllers/cart.controller.js";
 
+import { createTicket } from "../controllers/ticket.controller.js";
+
+// import { createTicket } from "../controllers/ticket.controller.js";
+
 cartRouter.get("/", getCarts);
 
 cartRouter.post("/", createCart);
@@ -26,5 +30,7 @@ cartRouter.put("/:cid", updateCart);
 cartRouter.put("/:cid/product/:pid", updateProductQuantity);
 
 cartRouter.delete("/:cid", emptyCart);
+
+cartRouter.post("/:cid/purchase", createTicket);
 
 export default cartRouter;

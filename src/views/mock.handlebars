@@ -1,0 +1,29 @@
+<div class="container-lista">
+  {{#each products}}
+    <div class="card-link">
+
+      <div class="card-header">
+        <div class="card-header-code">
+          <i class="bi bi-tag"></i>
+          Code:
+          {{this.code}}
+        </div>
+        <div class="card-content unset-width">
+          <div class="card-body center">
+            <h3 class="card-title">{{this.title}}</h3>
+            <ul class="list-product">
+              <li class="price">
+                <i class="bi bi-currency-dollar icono-price"></i>
+                {{this.price}}
+              </li>
+            </ul>
+            <div class="container-img">
+              <img src="{{this.thumbnail}}" alt="{{this.title}}" class="card-img" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  {{/each}}
+</div>

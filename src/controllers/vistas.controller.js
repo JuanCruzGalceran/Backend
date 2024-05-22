@@ -3,6 +3,7 @@ import { productRepository } from "../services/services.js";
 import { productsModel } from "../dao/models/products.model.js";
 import cartModel from "../dao/models/carts.model.js";
 import __dirname from "../utils.js";
+import { generateMockProducts } from "../mocks/mocks.js";
 
 // const products = new ProductManager();
 
@@ -156,4 +157,9 @@ export const cart = async (req, res) => {
     .populate("products.product", "_id title price description category code stock thumbnail")
     .lean();
   res.status(200).render("cart", { userCart, usuario, isAdmin, isUser, cartId });
+};
+
+export const mocks = (req, res) => {
+  const mockProducts = generateMockProducts();
+  res.render("mock", { products: mockProducts });
 };

@@ -1,8 +1,9 @@
 // import CartManager from "../dao/Mongo/cartManagerMongo.js";
 import CartModel from "../dao/models/carts.model.js";
 import { cartRepository } from "../services/services.js";
-
-// const cartManager = new CartManager();
+import { productRepository } from "../services/services.js";
+import errorsDictonary from "../services/errors/errors-dictionary.js";
+import CustomError from "../services/errors/customError.js";
 
 export const getCarts = async (req, res) => {
   try {
@@ -43,17 +44,21 @@ export const getCartById = async (req, res) => {
   }
 };
 
-export const addProductToCart = async (req, res) => {
-  let cartId = req.params.cid;
-  let productId = req.params.pid;
-  let quantity = req.body.quantity || 1;
-
+export const addProductToCart = async (req, res, next) => {
   try {
+    let cartId = req.params.cid;
+    let productId = req.params.pid;
+    const productToAddCart = await productRepository.findById(productId);
+    let quantity = req.body.quantity || 1;
+
+    if (!productToAddCart) {
+      throw new CustomError(errorsDictonary.PRODUCT_NOT_FOUND_ERROR, "Producto no encontrado");
+    }
+
     const updateCart = await cartRepository.addProductToCart(cartId, productId, quantity);
     res.json(updateCart.products);
   } catch (error) {
-    console.error("Error al agregar producto", error);
-    res.status(500).json({ error: "Error interno del servidor" });
+    next(error); // Pasar el error al middleware de manejo de errores
   }
 };
 

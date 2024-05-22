@@ -5,6 +5,7 @@ const generateMockProducts = () => {
   const mockProducts = [];
   for (let i = 1; i <= 100; i++) {
     mockProducts.push({
+      _id: faker.database.mongodbObjectId(),
       title: faker.commerce.productName(),
       description: faker.lorem.sentence(),
       price: faker.number.int({ min: 1, max: 100 }),

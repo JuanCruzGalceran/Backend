@@ -161,5 +161,6 @@ export const cart = async (req, res) => {
 
 export const mocks = (req, res) => {
   const mockProducts = generateMockProducts();
-  res.render("mock", { products: mockProducts });
+  const cartId = req.session.usuario.cart;
+  res.status(200).render("mock", { products: mockProducts, cartId });
 };

@@ -4,6 +4,8 @@ import { productsModel } from "../dao/models/products.model.js";
 import cartModel from "../dao/models/carts.model.js";
 import __dirname from "../utils.js";
 import { generateMockProducts } from "../mocks/mocks.js";
+import errorsDictionary from "../services/errors/errors-dictionary.js";
+import CustomError from "../services/errors/customError.js";
 
 // const products = new ProductManager();
 
@@ -87,7 +89,7 @@ export const getAllCarts = async (req, res) => {
   }
 };
 
-export const getCartById = async (req, res) => {
+export const getCartById = async (req, res, next) => {
   try {
     const cid = req.params.cid;
     let usuario = req.session.usuario;
@@ -96,13 +98,17 @@ export const getCartById = async (req, res) => {
       .findById(cid)
       .populate("products.product", "_id title price description category code stock thumbnail")
       .lean();
+
+    if (!cart) {
+      throw new CustomError(errorsDictionary.CART_NOT_FOUND, "Carrito no encontrado");
+    }
+
     const cartTotal = cart.products.reduce((acc, prod) => acc + prod.product.price * prod.quantity, 0);
     console.log(cartTotal);
     res.setHeader("Content-Type", "text/html");
     res.status(200).render("cartDetail", { cart, cartTotal, usuario, isAdmin });
   } catch (error) {
-    console.error(error);
-    res.status(500).send("Error interno del servidor");
+    next(error);
   }
 };
 

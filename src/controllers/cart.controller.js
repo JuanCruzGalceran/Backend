@@ -23,14 +23,13 @@ export const createCart = async (req, res) => {
   }
 };
 
-export const getCartById = async (req, res) => {
-  let cartId = req.params.cid;
-
+export const getCartById = async (req, res, next) => {
   try {
+    let cartId = req.params.cid;
     const cart = await CartModel.findById(cartId);
     if (!cart) {
       console.log("No existe el carrito con ese id");
-      return res.status(404).json({ error: "Carrito no encontrado" });
+      throw new CustomError(errorsDictonary.CART_NOT_FOUND, "Carrito no encontrado");
     }
     const productsInCart = cart.products.map(item => ({
       product: item.product.toObject(),
@@ -39,8 +38,7 @@ export const getCartById = async (req, res) => {
     res.json({ cart });
     // res.render("carts", { products: productsInCart });
   } catch (error) {
-    console.error("Error al obtener carrito", error);
-    res.status(500).json({ error: "Error interno del servidor" });
+    next(error); // Pasar el error al middleware de manejo de errores
   }
 };
 
@@ -48,7 +46,7 @@ export const addProductToCart = async (req, res, next) => {
   try {
     let cartId = req.params.cid;
     let productId = req.params.pid;
-    const productToAddCart = await productRepository.findById(productId);
+    const productToAddCart = await productRepository.getProductById(productId);
     let quantity = req.body.quantity || 1;
 
     if (!productToAddCart) {

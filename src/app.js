@@ -16,6 +16,8 @@ import { initPassport } from "./config/passport.config.js";
 import passport from "passport";
 import jwt from "jsonwebtoken";
 import { config } from "./config/config.js";
+import errorsDictionary from "./services/errors/errors-dictionary.js";
+import CustomError from "./services/errors/customError.js";
 
 const PORT = config.PORT;
 
@@ -54,8 +56,16 @@ app.use("/", vistasRouter);
 connectToDB();
 
 app.use((req, res) => {
-  res.status(404).json({ error: "Ruta no encontrada" });
+  res.status(404).json({ message: "Not found" });
 });
+
+// app.use(async (req, res, next) => {
+//   try {
+//     throw new CustomError(errorsDictionary.ROUTING_ERROR);
+//   } catch (error) {
+//     next(error);
+//   }
+// });
 
 const http = app.listen(PORT, () => {
   console.log(`Server on port ${PORT}`);

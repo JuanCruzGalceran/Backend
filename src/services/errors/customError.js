@@ -14,8 +14,8 @@ function getErrorMessage(errorCode) {
       return "Error de enrutamiento";
     case errorsDictionary.INVALID_TYPES_ERROR:
       return "Error de tipos inválidos";
-    case errorsDictionary.DATABASE_ERROR:
-      return "Error de base de datos";
+    case errorsDictionary.CART_NOT_FOUND:
+      return "Carrito no encontrado";
     case errorsDictionary.PRODUCT_NOT_FOUND_ERROR:
       return "Producto no encontrado";
     default:

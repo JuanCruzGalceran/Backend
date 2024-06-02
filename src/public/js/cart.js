@@ -1,8 +1,6 @@
 function finishPurchase(cartId) {
   const PUERTO = window.location.port || 8080;
 
-  console.log("debugJ", cartId);
-
   fetch(`http://localhost:${PUERTO}/api/carts/${cartId}/purchase/`, {
     method: "POST",
     headers: {
@@ -11,7 +9,7 @@ function finishPurchase(cartId) {
   })
     .then(response => response.json())
     .then(result => {
-      console.log("Resultado de la compra:", result);
+      console.log("debugJ", result);
       if (result.newTicket) {
         Toastify({
           text: "Compra finalizada correctamente",
@@ -54,7 +52,7 @@ function finishPurchase(cartId) {
       }
     })
     .catch(error => {
-      console.error("Error al comprar:", error);
+      req.logger.error("Error al comprar:", error);
       Toastify({
         text: "Error al comprar",
         duration: 3000,

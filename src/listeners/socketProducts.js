@@ -1,10 +1,11 @@
 import ProductManager from "../dao/Mongo/productManagerMongo.js";
 import  __dirname  from "../utils.js";
 const products = new ProductManager(__dirname+'/data/productos.json')
+import { loggerDev } from "../config/logger.js";
 
 const socketProducts = (socketServer) => {
     socketServer.on("connection",async(socket)=>{
-        console.log("client connected con ID:",socket.id)
+        loggerDev.info("client connected con ID:",socket.id)
         const listadeproductos=await products.getProducts()
 
         socketServer.emit("enviodeproducts",listadeproductos)

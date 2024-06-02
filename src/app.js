@@ -16,12 +16,14 @@ import { initPassport } from "./config/passport.config.js";
 import passport from "passport";
 import jwt from "jsonwebtoken";
 import { config } from "./config/config.js";
-import errorsDictionary from "./services/errors/errors-dictionary.js";
-import CustomError from "./services/errors/customError.js";
+import { addLogger, loggerDev } from "./config/logger.js";
+import loggerRouter from "./routes/loggers.router.js";
 
 const PORT = config.PORT;
 
 const app = express();
+
+app.use(addLogger);
 
 app.engine("handlebars", engine());
 app.set("view engine", "handlebars");
@@ -52,6 +54,7 @@ app.use("/api/products", productRouter);
 app.use("/api/carts", cartRouter);
 app.use("/api/sessions", sessionsRouter);
 app.use("/", vistasRouter);
+app.use("/loggerTest", loggerRouter);
 
 connectToDB();
 
@@ -68,7 +71,7 @@ app.use((req, res) => {
 // });
 
 const http = app.listen(PORT, () => {
-  console.log(`Server on port ${PORT}`);
+  loggerDev.info(`Server on port ${PORT}`);
 });
 
 const io = new Server(http);

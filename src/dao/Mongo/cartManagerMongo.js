@@ -7,7 +7,7 @@ class CartManager {
       await newCart.save();
       return newCart;
     } catch (error) {
-      console.log("Error al crear carrito", error);
+      req.logger.error("Error al crear carrito", error);
       throw error;
     }
   }
@@ -17,7 +17,7 @@ class CartManager {
       const carts = await CartModel.find().populate("products.product", "_id title price description category code stock thumbnail");
       return carts;
     } catch (err) {
-      console.error("Error al obtener los carritos:", err.message);
+      req.logger.error("Error al obtener los carritos:", err.message);
       return [];
     }
   }
@@ -32,7 +32,7 @@ class CartManager {
 
       return cart;
     } catch (error) {
-      console.error("Error al obtener el carrito por ID", error);
+      req.logger.error("Error al obtener el carrito por ID", error);
       throw error;
     }
   }
@@ -52,7 +52,7 @@ class CartManager {
       await cart.save();
       return cart;
     } catch (error) {
-      console.error("Error al agregar un producto al carrito", error);
+      req.logger.error("Error al agregar un producto al carrito", error);
       throw error;
     }
   }
@@ -67,7 +67,7 @@ class CartManager {
       await cart.save();
       return cart;
     } catch (error) {
-      console.error("Error al eliminar el producto del carrito en cartManager", error);
+      req.logger.error("Error al eliminar el producto del carrito en cartManager", error);
       throw error;
     }
   }
@@ -83,7 +83,7 @@ class CartManager {
       await cart.save();
       return cart;
     } catch (error) {
-      console.error("Error al actualizar el carrito en cartManager", error);
+      req.logger.error("Error al actualizar el carrito en cartManager", error);
       throw error;
     }
   }
@@ -105,7 +105,7 @@ class CartManager {
         throw new Error("Producto no encontrado en el carrito");
       }
     } catch (error) {
-      console.error("Error al actualizar la cantidad del producto en carrito desde cart manager", error);
+      req.logger.error("Error al actualizar la cantidad del producto en carrito desde cart manager", error);
       throw error;
     }
   }
@@ -118,7 +118,7 @@ class CartManager {
       }
       return cart;
     } catch (error) {
-      console.error("Error al vaciar el carrito desde cart manager", error);
+      req.logger.error("Error al vaciar el carrito desde cart manager", error);
       throw error;
     }
   }

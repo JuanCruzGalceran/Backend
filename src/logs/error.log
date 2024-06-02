@@ -1,0 +1,30 @@
+{
+  message: 'Este es un mensaje de depuración.',
+  level: 'debug',
+  timestamp: '2024-06-02T20:19:34.670Z'
+}
+{
+  message: 'Este es un mensaje HTTP.',
+  level: 'http',
+  timestamp: '2024-06-02T20:19:34.674Z'
+}
+{
+  message: 'Este es un mensaje de información.',
+  level: 'info',
+  timestamp: '2024-06-02T20:19:34.674Z'
+}
+{
+  message: 'Este es un mensaje de advertencia.',
+  level: 'warn',
+  timestamp: '2024-06-02T20:19:34.674Z'
+}
+{
+  message: 'Este es un mensaje de error.',
+  level: 'error',
+  timestamp: '2024-06-02T20:19:34.674Z'
+}
+{
+  message: 'Este es un mensaje fatal.',
+  level: 'fatal',
+  timestamp: '2024-06-02T20:19:34.674Z'
+}

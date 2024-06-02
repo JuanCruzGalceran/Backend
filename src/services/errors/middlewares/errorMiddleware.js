@@ -1,13 +1,13 @@
 import errorsDictonary from "../errors-dictionary.js";
 
 const errorMiddleware = (error, req, res, next) => {
-  console.error("Error detectado entrando al Error Middleware:");
-  console.error(`Name: ${error.name}`);
-  console.error(`Code: ${error.errorCode}`);
-  console.error(`Message: ${error.message}`);
+  req.logger.error("Error detectado entrando al Error Middleware:");
+  req.logger.error(`Name: ${error.name}`);
+  req.logger.error(`Code: ${error.errorCode}`);
+  req.logger.error(`Message: ${error.message}`);
 
   if (error.additionalInfo) {
-    console.error("Additional Info:", error.additionalInfo);
+    req.logger.error("Additional Info:", error.additionalInfo);
   }
 
   switch (error.errorCode) {

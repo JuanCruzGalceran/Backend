@@ -1,7 +1,6 @@
 const PUERTO = window.location.port || 8080;
 
 function agregarAlCarrito(productoId, cartId) {
-  console.log("Agregando producto al carrito", cartId, productoId);
   fetch(`http://localhost:${PUERTO}/api/carts/${cartId}/product/${productoId}/`, {
     method: "POST",
     headers: {
@@ -34,7 +33,7 @@ function agregarAlCarrito(productoId, cartId) {
       }
     })
     .catch(error => {
-      console.error("Error al agregar producto al carrito:", error);
+      req.logger.error("Error al agregar producto al carrito:", error);
       Toastify({
         text: "Hubo un error al agregar el producto al carrito",
         duration: 3000,

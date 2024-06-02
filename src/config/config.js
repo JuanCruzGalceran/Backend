@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import { Command, Option } from "commander";
+import { loggerDev } from "./logger.js";
 
 let programa = new Command();
 
@@ -10,7 +11,7 @@ const opts = programa.opts();
 
 const mode = opts.mode;
 
-console.log(`Ejecutando en modo ${mode}`);
+loggerDev.info(`Ejecutando en modo ${mode}`);
 dotenv.config({
   path: mode === "prod" ? "./src/.env.prod" : "./src/.env.dev",
   override: true,
@@ -24,4 +25,5 @@ export const config = {
   CLIENTID: process.env.CLIENTID,
   CLIENTSECRET: process.env.CLIENTSECRET,
   CALLBACKURL: process.env.CALLBACKURL,
+  mode: mode,
 };

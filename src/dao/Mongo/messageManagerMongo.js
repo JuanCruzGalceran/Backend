@@ -22,12 +22,10 @@ export default class MessagesManager {
 
   deleteAllMessages = async () => {
     try {
-      console.log("Deleting all messages...");
       const result = await messageModel.deleteMany({});
-      console.log("Messages deleted:", result);
       return result;
     } catch (error) {
-      console.error("Error deleting messages:", error);
+      req.logger.error("Error deleting messages:", error);
       return error;
     }
   };

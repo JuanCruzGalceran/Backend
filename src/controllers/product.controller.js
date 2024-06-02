@@ -58,7 +58,7 @@ export const getAllProducts = async (req, res) => {
       nextLink: page < totalPages ? `/?page=${page + 1}` : null,
     });
   } catch (error) {
-    console.error(error);
+    req.logger.error(error);
     res.status(500).send("Error interno del servidor");
   }
 };

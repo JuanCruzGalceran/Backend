@@ -71,7 +71,7 @@ export const getProducts = async (req, res) => {
       listadeproductos,
     });
   } catch (error) {
-    console.error(error);
+    req.logger.error(error);
     res.status(500).send("Error interno del servidor");
   }
 };
@@ -84,7 +84,7 @@ export const getAllCarts = async (req, res) => {
     res.setHeader("Content-Type", "text/html");
     res.status(200).render("carts", { carts, usuario, isAdmin });
   } catch (error) {
-    console.error(error);
+    req.logger.error(error);
     res.status(500).send("Error interno del servidor");
   }
 };
@@ -104,7 +104,7 @@ export const getCartById = async (req, res, next) => {
     }
 
     const cartTotal = cart.products.reduce((acc, prod) => acc + prod.product.price * prod.quantity, 0);
-    console.log(cartTotal);
+    req.logger.info(cartTotal);
     res.setHeader("Content-Type", "text/html");
     res.status(200).render("cartDetail", { cart, cartTotal, usuario, isAdmin });
   } catch (error) {
@@ -122,7 +122,7 @@ export const getProductById = async (req, res) => {
     res.setHeader("Content-Type", "text/html");
     res.status(200).render("productDetail", { product, isAdmin, cartId });
   } catch (error) {
-    console.error(error);
+    req.logger.error(error);
     res.status(500).send("No se encontro producto");
   }
 };

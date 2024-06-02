@@ -18,7 +18,7 @@ export const createCart = async (req, res) => {
     let newCart = await cartRepository.createCart();
     res.json(newCart);
   } catch (error) {
-    console.error("Error al crear nuevo carrito", error);
+    req.logger.error("Error al crear nuevo carrito", error);
     res.status(500).json({ error: "Error interno del servidor" });
   }
 };
@@ -28,7 +28,7 @@ export const getCartById = async (req, res, next) => {
     let cartId = req.params.cid;
     const cart = await CartModel.findById(cartId);
     if (!cart) {
-      console.log("No existe el carrito con ese id");
+      req.logger.info("No existe el carrito con ese id");
       throw new CustomError(errorsDictonary.CART_NOT_FOUND, "Carrito no encontrado");
     }
     const productsInCart = cart.products.map(item => ({
@@ -71,7 +71,7 @@ export const deleteProductFromCart = async (req, res) => {
       updateCart,
     });
   } catch (error) {
-    console.error("Error al eliminar el producto del carrito en cart.router", error);
+    req.logger.error("Error al eliminar el producto del carrito en cart.router", error);
     res.status(500).json({
       status: "error",
       error: "Error del servidor",
@@ -86,7 +86,7 @@ export const updateCart = async (req, res) => {
     let updatedCart = await cartRepository.updateCart(cartId, updatedProducts);
     res.json(updatedCart);
   } catch (error) {
-    console.error("Error al actualizar el carrito en cart.router", error);
+    req.logger.error("Error al actualizar el carrito en cart.router", error);
     res.status(500).json({
       status: "error",
       error: "Error interno del servidor",
@@ -106,7 +106,7 @@ export const updateProductQuantity = async (req, res) => {
       updatedCart,
     });
   } catch (error) {
-    console.error("Error al actualizar la cantidad del producto en el carrito desde cart.router", error);
+    req.logger.error("Error al actualizar la cantidad del producto en el carrito desde cart.router", error);
     res.status(500).json({
       status: "error",
       error: "Error interno del servidor",
@@ -124,7 +124,7 @@ export const emptyCart = async (req, res) => {
       updatedCart,
     });
   } catch (error) {
-    console.error("Error al vaciar el carrito desde cart router", error);
+    req.logger.error("Error al vaciar el carrito desde cart router", error);
     res.status(500).json({
       status: "error",
       error: "Error interno del servidor",

@@ -12,6 +12,8 @@ import {
   user,
   cart,
   mocks,
+  recover,
+  reset
 } from "../controllers/vistas.controller.js";
 
 const vistasRouter = Router();
@@ -37,5 +39,9 @@ vistasRouter.get("/user", auth, user);
 vistasRouter.get("/cart", auth, cart);
 
 vistasRouter.get("/mockingproducts", mocks);
+
+vistasRouter.get("/recover", recover);
+
+vistasRouter.get("/reset" , reset)
 
 export default vistasRouter;

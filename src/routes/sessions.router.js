@@ -1,6 +1,16 @@
 import { Router } from "express";
 import passport from "passport";
-import { register, login, logout, authenticateFailed, callBackGitHub, getCurrentSession } from "../controllers/sessions.controller.js";
+import {
+  register,
+  login,
+  logout,
+  authenticateFailed,
+  callBackGitHub,
+  getCurrentSession,
+  recoverPassword,
+  // resetPassword,
+  changePassword,
+} from "../controllers/sessions.controller.js";
 
 export const router = Router();
 
@@ -17,3 +27,7 @@ router.get("/github", passport.authenticate("github", { failureRedirect: "/api/s
 router.get("/callbackGithub", passport.authenticate("github", { failureRedirect: "/api/sessions/autenticatefailed" }), callBackGitHub);
 
 router.get("/current", getCurrentSession);
+
+router.post("/recover", recoverPassword);
+
+router.post("/change", changePassword);

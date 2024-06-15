@@ -20,10 +20,13 @@ dotenv.config({
 export const config = {
   PORT: process.env.PORT || 3000,
   MENSAJE: process.env.MENSAJE,
+  SECRET: process.env.SECRET,
   MONGO_URL: process.env.MONGO_URL,
   DB_NAME: process.env.DB_NAME || "basePruebas",
   CLIENTID: process.env.CLIENTID,
   CLIENTSECRET: process.env.CLIENTSECRET,
   CALLBACKURL: process.env.CALLBACKURL,
   mode: mode,
+  GMAIL_USER: process.env.GMAIL_USER,
+  GMAIL_PASS: process.env.GMAIL_PASS,
 };

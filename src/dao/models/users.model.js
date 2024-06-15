@@ -19,7 +19,7 @@ export const usersModel = mongoose.model(
     password: String,
     rol: {
       type: String,
-      enum: ["admin", "user"],
+      enum: ["admin", "user", "premium"],
       default: "user",
     },
     // {

@@ -170,3 +170,12 @@ export const mocks = (req, res) => {
   const cartId = req.session.usuario.cart;
   res.status(200).render("mock", { products: mockProducts, cartId });
 };
+
+export const recover = (req, res) => {
+  res.render("forgotPassword");
+};
+
+export const reset = (req, res) => {
+  const token = req.query.token;
+  res.render("resetPassword", { token });
+};

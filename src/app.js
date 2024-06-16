@@ -18,6 +18,7 @@ import jwt from "jsonwebtoken";
 import { config } from "./config/config.js";
 import { addLogger, loggerDev } from "./config/logger.js";
 import loggerRouter from "./routes/loggers.router.js";
+import usersRouter from "./routes/users.router.js";
 
 const PORT = config.PORT;
 
@@ -53,12 +54,14 @@ app.use(express.static(path.join(__dirname, "/public")));
 app.use("/api/products", productRouter);
 app.use("/api/carts", cartRouter);
 app.use("/api/sessions", sessionsRouter);
-app.use("/", vistasRouter);
+app.use("/api/users", usersRouter);
 app.use("/loggerTest", loggerRouter);
+app.use("/", vistasRouter);
 
 connectToDB();
 
 app.use((req, res) => {
+  console.log("debug J not found");
   res.status(404).json({ message: "Not found" });
 });
 

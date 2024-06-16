@@ -10,7 +10,6 @@ function updateProductList(productList) {
   let productosHTML = "";
 
   productList.forEach(product => {
-    // const thumbnailUrl = product.thumbnails.length > 0 ? product.thumbnails[0].url : 'https://img.freepik.com/vector-gratis/ilustracion-icono-galeria_53876-27002.jpg';
     productosHTML += `
           <div class="card">
             <div class="card-content">
@@ -56,6 +55,8 @@ form.addEventListener("submit", evt => {
   let code = form.elements.code.value;
   let status = form.elements.status.checked;
 
+  console.log("debugJ about to addProduct");
+
   socketClient.emit("addProduct", {
     title,
     description,
@@ -71,6 +72,10 @@ form.addEventListener("submit", evt => {
 });
 
 document.getElementById("delete-btn").addEventListener("click", function () {
+  // generate an alert to confirm the deletion
+  console.log("debugJ delete button clicked");
+
+  alert("Are you sure you want to delete this product?");
   const deleteidinput = document.getElementById("id-prod");
   const deleteid = deleteidinput.value;
   socketClient.emit("deleteProduct", deleteid);

@@ -33,6 +33,7 @@ export default class ProductManager {
 
     addProduct = async (product) => {
         try {
+            console.log("debugJ Mongo", product);
             await productsModel.create(product);
             return await productsModel.findOne({ title: product.title })
         }

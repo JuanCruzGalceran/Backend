@@ -17,6 +17,10 @@ Handlebars.registerHelper("sum", function (values) {
   return values.reduce((acc, val) => acc + val, 0);
 });
 
+Handlebars.registerHelper('eq', function (v1, v2) {
+  return v1 === v2;
+});
+
 export const routes = {
   products: join(__dirname, "data", "productos.json"),
   carts: join(__dirname, "data", "carts.json"),

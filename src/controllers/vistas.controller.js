@@ -6,6 +6,7 @@ import __dirname from "../utils.js";
 import { generateMockProducts } from "../mocks/mocks.js";
 import errorsDictionary from "../services/errors/errors-dictionary.js";
 import CustomError from "../services/errors/customError.js";
+import { usersModel } from "../dao/models/users.model.js";
 
 // const products = new ProductManager();
 
@@ -14,7 +15,10 @@ export const getProducts = async (req, res) => {
   let usuario = req.session.usuario;
   const isAdmin = usuario.rol === "admin";
   const isUser = usuario.rol === "user";
+  const isPremium = usuario.rol === "premium";
   const cartId = req.session.usuario.cart.toString();
+  const userId = req.session.usuario._id;
+  const email = req.session.usuario.email;
 
   if (!pagina) {
     pagina = 1;
@@ -60,6 +64,9 @@ export const getProducts = async (req, res) => {
       usuario,
       isAdmin,
       isUser,
+      isPremium,
+      userId,
+      email,
       totalPages,
       prevPage,
       nextPage,
@@ -119,8 +126,11 @@ export const getProductById = async (req, res) => {
     const productId = req.params.pid;
     const cartId = req.session.usuario.cart.toString();
     const product = JSON.parse(JSON.stringify(await productRepository.getProductById(productId)));
+    const email = req.session.usuario.email;
+    console.log("email", email);
+    console.log("product", product);
     res.setHeader("Content-Type", "text/html");
-    res.status(200).render("productDetail", { product, isAdmin, cartId });
+    res.status(200).render("productDetail", { product, isAdmin, cartId, email });
   } catch (error) {
     req.logger.error(error);
     res.status(500).send("No se encontro producto");
@@ -148,21 +158,26 @@ export const login = (req, res) => {
 
 export const user = (req, res) => {
   let usuario = req.session.usuario;
+  console.log(usuario);
   const isAdmin = usuario.rol === "admin";
   const isUser = usuario.rol === "user";
-  res.status(200).render("user", { usuario, isAdmin, isUser });
+  const isPremium = usuario.rol === "premium";
+  const rol = usuario.rol;
+  const userId = usuario._id;
+  res.status(200).render("user", { usuario, isAdmin, isUser, rol, userId, isPremium });
 };
 
 export const cart = async (req, res) => {
   let usuario = req.session.usuario;
   const isAdmin = usuario.rol === "admin";
   const isUser = usuario.rol === "user";
+  const isPremium = usuario.rol === "premium";
   const cartId = req.session.usuario.cart;
   const userCart = await cartModel
     .findById(cartId)
     .populate("products.product", "_id title price description category code stock thumbnail")
     .lean();
-  res.status(200).render("cart", { userCart, usuario, isAdmin, isUser, cartId });
+  res.status(200).render("cart", { userCart, usuario, isAdmin, isUser, cartId, isPremium });
 };
 
 export const mocks = (req, res) => {
@@ -178,4 +193,24 @@ export const recover = (req, res) => {
 export const reset = (req, res) => {
   const token = req.query.token;
   res.render("resetPassword", { token });
+};
+
+export const rol = (req, res) => {
+  let user = req.session.usuario;
+  let rol = user.rol;
+  let uid = user._id;
+  res.status(200).render("rol", { rol, uid });
+};
+
+export const premium = async (req, res) => {
+  let datoUsuario = req.session.usuario._id;
+  let usuario = await usersModel.findById(datoUsuario);
+  let rol = usuario.rol;
+  let uid = usuario._id;
+  let email = usuario.email;
+  const isAdmin = usuario.rol === "admin";
+  const isUser = usuario.rol === "user";
+  const isPremium = usuario.rol === "premium";
+  const productos = await productsModel.find({ owner: email }).lean();
+  res.status(200).render("premium", { usuario, productos, rol, uid, isAdmin, isUser, isPremium });
 };

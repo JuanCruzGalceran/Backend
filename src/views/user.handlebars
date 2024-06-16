@@ -2,5 +2,11 @@
 <hr>
 <p>Nombre: <strong>{{usuario.username}}</strong></p>
 <p>Correo electrónico: <strong>{{usuario.email}}</strong></p>
-
+<p>Rol: <strong>{{usuario.rol}}</strong></p>
+{{#if isUser}}
+<button onclick="changeUserRol('{{userId}}')">Cambiar a premium</button>
+{{/if}}
+{{#if isPremium}}
+<button onclick="changeUserRol('{{userId}}')">Cambiar a user</button>
+{{/if}}
 <br>

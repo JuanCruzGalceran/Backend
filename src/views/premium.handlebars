@@ -1,0 +1,88 @@
+{{>navbar}}
+<div class="realtime-main-container">
+<form class="container-general" id="formProduct" action="/api/products" method="post">
+    <div class="container-formularios">
+        <div class="container-form">
+            <h2 class="titulo-formularios">Agregar Producto:</h2>
+<div class="container-leftright">
+    <div class="container-form">
+        <label for="title" class="form-label">Nombre del Producto</label>
+        <div class="input-group">
+            <div class="input-group-text"><i class="bi bi-box"></i></div>
+            <input class="form-control" type="text" name="title" id="title" placeholder="Inserte nombre del producto" required="">
+        </div>
+        <label for="description" class="form-label">Descripción</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-file-text"></i></span>
+            <input class="form-control" type="text" name="description" id="description" placeholder="Inserte descripción" required="">
+        </div>
+        <label for="stock" class="form-label">Stock</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-box"></i></span>
+            <input class="form-control" type="number" name="stock" id="stock" placeholder="Inserte stock" required="">
+        </div>
+        <label for="thumbnail" class="form-label">Imagen (URL)</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-image"></i></span>
+            <input class="form-control" type="text" name="thumbnail" id="thumbnail" placeholder="Inserte URL">
+        </div>
+        <label for="category" class="form-label">Categoría</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-grid"></i></span>
+            <input class="form-control" type="text" name="category" id="category" placeholder="Inserte categoría" required="">
+        </div>
+        <label for="price" class="form-label">Precio</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-currency-dollar"></i></span>
+            <input class="form-control" type="number" name="price" id="price" placeholder="Inserte precio" required="">
+        </div>
+        <label for="code" class="form-label">Código</label>
+        <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-tag"></i></span>
+            <input class="form-control" type="text" name="code" id="code" placeholder="Inserte código numerico" required="">
+        </div>
+        <div class="form-check mt-4">
+            <input name="status" class="form-check-input" type="checkbox" value="true" id="flexCheckChecked" checked="">
+            <label for="flexCheckChecked">Estado</label>
+        </div>
+    </div>
+</div>
+
+            <div class="container-registrar-btn">
+                <button class="registrar-btn general-buttons" type="submit" id="add-btn">Registrar </button>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="container-lista" id="list-products">
+    {{#each productos}}
+              <div class="card">
+            <div class="card-content">
+              <div class="img-container">
+                <img class="card-img" src="{{product.thumbnail}}" alt="{{product.title}}">
+              </div>
+              <div class="card-body">
+                  <h4 class="card-title">{{this.title}}</h4>
+                    <ul class="card-text">
+                      <li>ID: {{this._id}}</li>
+                      <li>Description: {{this.description}}</li>
+                      <li>Price: {{this.price}}</li>
+                      <li>Category: {{this.category}}</li>
+                      <li>Status: {{this.status}}</li>
+                      <li>Stock: {{this.stock}}</li>
+                      <li>Code: {{this.code}}</li>
+                      <li>Owner: {{this.owner}}</li>
+                    </ul>
+              </div>
+                <form id="deleteForm_{{this._id}}" onsubmit="deleteProduct('{{this._id}}'); return false;">
+                    <input type="submit" class="eliminar-btn" value="Eliminar">
+                </form>
+            </div>
+   
+    {{/each}}
+
+</div>
+</div>
+
+
+<script src="/js/deleteProduct.js"></script>

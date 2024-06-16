@@ -7,6 +7,11 @@
     <li><a href="/cart">Cart</a></li>
     <li><a href="/products">Productos</a></li>
   {{/if}}
+  {{#if isPremium}}
+    <li><a href="/products">Productos</a></li>
+    <li><a href="/cart">Cart</a></li>
+    <li><a href="/premium">Vende tus products</a></li>
+  {{/if}}
   <li><a href="/user">Usuario</a></li>
   <div class="user">
     <li class="username">Bienvenido: <strong>{{usuario.username}}</strong></li>

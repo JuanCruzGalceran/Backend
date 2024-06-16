@@ -8,7 +8,6 @@ import {
   callBackGitHub,
   getCurrentSession,
   recoverPassword,
-  // resetPassword,
   changePassword,
 } from "../controllers/sessions.controller.js";
 

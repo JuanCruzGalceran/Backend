@@ -1,0 +1,174 @@
+openapi: 3.0.0
+info:
+  title: Documentación de la API de Productos
+  description: Documentación de la API para gestionar productos.
+  version: 1.0.0
+servers:
+  - url: http://localhost:3001
+    description: Servidor de desarrollo
+tags:
+  - name: Product
+    description: Endpoints referidos al manejo de los productos
+
+paths:
+  /api/products:
+    post:
+      tags: [Product]
+      summary: Agregar un nuevo producto
+      description: >
+        Agrega un nuevo producto a la DB.
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              title:
+                type: string
+                description: Título del producto. Este campo debe contener el nombre del producto de manera descriptiva y clara.
+              description:
+                type: string
+                description: Descripción detallada del producto. Proporciona información adicional sobre el producto, como características, materiales, etc.
+              price:
+                type: number
+                description: Precio del producto. Asegúrate de no proporcionar un valor cero.
+              thumbnail:
+                type: string
+                description: URL de la imagen.
+              code:
+                type: string
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Product"
+      responses:
+        "201":
+          description: Producto creado correctamente
+        "400":
+          description: Problemas internos del servidor
+
+    get:
+      tags: [Product]
+      summary: Obtiene Todos los productos de la BD paginados.
+      description: >
+        Trae un Json con todos los productos desde la base de datos.
+      parameters:
+        - in: query
+          name: pagina
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+          description: Número de página
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 6
+          description: Cantidad máxima de productos por página
+      responses:
+        "200":
+          description: Lista de productos obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+        "500":
+          description: Error interno del servidor
+
+  /api/products/{productId}:
+    delete:
+      tags: [Product]
+      summary: Eliminar un producto de la BD
+      description: >
+        Elimina un producto de la BD utilizando el ID del producto.
+      parameters:
+        - in: path
+          name: productId
+          required: true
+          description: ID del producto a eliminar
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Producto eliminado exitosamente
+        "404":
+          description: Producto no encontrado
+
+    get:
+      tags: [Product]
+      summary: Obtiene un producto de la BD
+      description: >
+        Obtiene un producto de la BD utilizando el ID del producto.
+      parameters:
+        - in: path
+          name: productId
+          required: true
+          description: ID del producto a obtener
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Producto obtenido exitosamente
+        "404":
+          description: Producto no encontrado
+
+    put:
+      tags: [Product]
+      summary: Modificar un producto de la BD
+      description: >
+        Modifica un producto de la BD utilizando el ID del producto.
+      parameters:
+        - in: path
+          name: productId
+          required: true
+          description: ID del producto a modificar
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Producto modifcado exitosamente
+        "400":
+          description: Producto no encontrado
+
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: ID del producto autogenerado por MongoDB.
+        title:
+          type: string
+          description: Título del producto. Este campo debe contener el nombre del producto de manera descriptiva y clara.
+        description:
+          type: string
+          description: Descripción detallada del producto. Proporciona información adicional sobre el producto, como características, materiales, etc.
+        price:
+          type: number
+          description: Precio del producto. Asegúrate de no proporcionar un valor cero.
+        thumbnail:
+          type: string
+          description: URL de la imagen.
+        code:
+          type: string
+          description: Código único del producto.
+        stock:
+          type: integer
+          description: Cantidad en stock del producto. Asegúrate de proporcionar un valor mayor que cero.
+        status:
+          type: boolean
+          description: Estado del producto. Especifica si el producto está activo (true) o inactivo (false).
+        owner:
+          type: string
+          description: Propietario del producto. Este campo puede ser útil para rastrear quién agregó o modificó el producto.
+      required:
+        - title
+        - price
+        - thumbnail
+        - code
+        - stock

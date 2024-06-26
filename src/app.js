@@ -19,6 +19,8 @@ import { config } from "./config/config.js";
 import { addLogger, loggerDev } from "./config/logger.js";
 import loggerRouter from "./routes/loggers.router.js";
 import usersRouter from "./routes/users.router.js";
+import swaggerJSDoc from "swagger-jsdoc";
+import swaggerUIExpress from "swagger-ui-express";
 
 const PORT = config.PORT;
 
@@ -58,20 +60,25 @@ app.use("/api/users", usersRouter);
 app.use("/loggerTest", loggerRouter);
 app.use("/", vistasRouter);
 
+const swaggerOptions = {
+  definition: {
+    openapi: "3.0.1",
+    info: {
+      title: "Documentacion",
+      description: "Documentacion de la API",
+    },
+  },
+  apis: [`./src/docs/*.yaml`],
+};
+
+const specs = swaggerJSDoc(swaggerOptions);
+app.use("/apidocs", swaggerUIExpress.serve, swaggerUIExpress.setup(specs));
+
 connectToDB();
 
 app.use((req, res) => {
-  console.log("debug J not found");
   res.status(404).json({ message: "Not found" });
 });
-
-// app.use(async (req, res, next) => {
-//   try {
-//     throw new CustomError(errorsDictionary.ROUTING_ERROR);
-//   } catch (error) {
-//     next(error);
-//   }
-// });
 
 const http = app.listen(PORT, () => {
   loggerDev.info(`Server on port ${PORT}`);

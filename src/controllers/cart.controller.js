@@ -7,7 +7,7 @@ import CustomError from "../services/errors/customError.js";
 
 export const getCarts = async (req, res) => {
   try {
-    res.json({ carts: await cartRepository.getCarts() });
+    res.json({ carts: await cartRepository.getAll() });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

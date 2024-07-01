@@ -77,7 +77,8 @@ export const getProductById = async (req, res) => {
 export const addProduct = async (req, res) => {
   try {
     const newProduct = req.body;
-    let usuario = await usersModel.findOne({ email: req.user.email });
+    const email = req?.user?.email || newProduct.email;
+    let usuario = await usersModel.findOne({ email: email });
 
     let owner = usuario.email;
 
@@ -86,7 +87,7 @@ export const addProduct = async (req, res) => {
     }
 
     await productRepository.addProduct(newProduct);
-    res.status(201).json({ message: "Producto creado correctamente" });
+    res.status(200).json({ message: "Producto creado correctamente" });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }

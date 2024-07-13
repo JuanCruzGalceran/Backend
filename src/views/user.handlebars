@@ -10,3 +10,12 @@
 <button onclick="changeUserRol('{{userId}}')">Cambiar a user</button>
 {{/if}}
 <br>
+<form action="api/users/{{userId}}/documents" method="POST" class="upload_form" enctype="multipart/form-data">
+    <label for="identificacion">Identificación</label>
+    <input type="file" name="identificacion" placeholder="Tags">
+    <label for="comprobanteDeDomicilio">Comprobante de domicilio</label>
+    <input type="file" name="comprobanteDeDomicilio" placeholder="Tags">
+    <label for="comprobanteDeEstadoDeCuenta">Comprobante de estado de cuenta</label>
+    <input type="file" name="comprobanteDeEstadoDeCuenta" placeholder="Tags">
+    <button type="submit">Cargar documentos</button>
+</form>

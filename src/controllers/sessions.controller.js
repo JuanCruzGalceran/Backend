@@ -48,6 +48,7 @@ export const login = async (req, res) => {
   usuario = { ...usuario };
   delete usuario.password;
   req.session.usuario = usuario;
+  userRepository.updateLastConnection(usuario._id);
 
   res.setHeader("Content-Type", "application/json");
   res.status(200).json({
@@ -58,6 +59,7 @@ export const login = async (req, res) => {
 };
 
 export const logout = (req, res) => {
+  userRepository.updateLastConnection(req.session.usuario._id);
   req.session.destroy(e => {
     if (e) {
       res.setHeader("Content-Type", "application/json");
@@ -67,6 +69,7 @@ export const logout = (req, res) => {
       });
     }
   });
+
   res.setHeader("Content-Type", "application/json");
   res.status(200).json({
     message: "Logout exitoso",

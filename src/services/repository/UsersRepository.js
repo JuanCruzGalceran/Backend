@@ -10,6 +10,14 @@ class UserRepository {
   getBy = filter => {
     return this.UserRepository.getBy(filter);
   };
+
+  updateLastConnection = uid => {
+    return this.UserRepository.updateLastConnection(uid);
+  };
+
+  updateDocuments = (userId, documents) => {
+    return this.UserRepository.updateDocuments(userId, documents);
+  }
 }
 
 export default UserRepository;

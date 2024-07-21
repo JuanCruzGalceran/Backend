@@ -2,10 +2,16 @@
   {{#if isAdmin}}
     <li><a href="/realTimeProducts">Panel de administrador</a></li>
     <li><a href="/carts">Carts</a></li>
+    <li><a href="/adminusers">Administrar Usuarios</a></li>
   {{/if}}
   {{#if isUser}}
     <li><a href="/cart">Cart</a></li>
     <li><a href="/products">Productos</a></li>
+  {{/if}}
+  {{#if isPremium}}
+    <li><a href="/products">Productos</a></li>
+    <li><a href="/cart">Cart</a></li>
+    <li><a href="/premium">Vende tus products</a></li>
   {{/if}}
   <li><a href="/user">Usuario</a></li>
   <div class="user">

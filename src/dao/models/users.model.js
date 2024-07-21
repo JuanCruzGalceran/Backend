@@ -19,11 +19,15 @@ export const usersModel = mongoose.model(
     password: String,
     rol: {
       type: String,
-      enum: ["admin", "user"],
+      enum: ["admin", "user", "premium"],
       default: "user",
     },
-    // {
-    //     timestamps: true, strict: false
-    // }
+    documents: [
+      {
+        name: String,
+        reference: String,
+      },
+    ],
+    last_connection: Date,
   })
 );

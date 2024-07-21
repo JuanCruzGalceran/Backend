@@ -1,8 +1,6 @@
 function finishPurchase(cartId) {
   const PUERTO = window.location.port || 8080;
 
-  console.log("debugJ", cartId);
-
   fetch(`http://localhost:${PUERTO}/api/carts/${cartId}/purchase/`, {
     method: "POST",
     headers: {
@@ -11,7 +9,7 @@ function finishPurchase(cartId) {
   })
     .then(response => response.json())
     .then(result => {
-      console.log("Resultado de la compra:", result);
+      console.log("debugJ", result);
       if (result.newTicket) {
         Toastify({
           text: "Compra finalizada correctamente",
@@ -23,6 +21,7 @@ function finishPurchase(cartId) {
           },
           close: true,
         }).showToast();
+        window.location.href = `/details?ticketId=${result.newTicket._id}`;
 
         if (result.unavailableProducts && result.unavailableProducts.length > 0) {
           const message = result.unavailableProducts
@@ -54,7 +53,7 @@ function finishPurchase(cartId) {
       }
     })
     .catch(error => {
-      console.error("Error al comprar:", error);
+      console.log("debugJ error", error);
       Toastify({
         text: "Error al comprar",
         duration: 3000,

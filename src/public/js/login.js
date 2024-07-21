@@ -99,3 +99,52 @@ function logout() {
       }).showToast();
     });
 }
+
+function changeUserRol(userId) {
+  console.log("changeUserRol");
+  fetch(`http://localhost:${PORT}/api/users/premium/${userId}`, {
+    method: "GET",
+  })
+    .then(response => {
+      console.log(response);
+      if (response.ok) {
+        Toastify({
+          text: "Rol actualizado correctamente",
+          duration: 1500,
+          className: "toast",
+          style: {
+            background: "linear-gradient(to right, #93e77e, #38943b)",
+            color: "#000000",
+          },
+          close: true,
+        }).showToast();
+
+        setTimeout(function () {
+          window.location.reload();
+        }, 1500);
+      } else {
+        Toastify({
+          text: "Error al actualizar rol",
+          duration: 1500,
+          className: "toast",
+          style: {
+            background: "linear-gradient(to right, #e36f6f, #c42626)",
+            color: "#000000",
+          },
+          close: true,
+        }).showToast();
+      }
+    })
+    .catch(error => {
+      Toastify({
+        text: "Error al actualizar rol",
+        duration: 1500,
+        className: "toast",
+        style: {
+          background: "linear-gradient(to right, #e36f6f, #c42626)",
+          color: "#000000",
+        },
+        close: true,
+      }).showToast();
+    });
+}

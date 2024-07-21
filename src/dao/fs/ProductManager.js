@@ -7,7 +7,7 @@ class ProductManager {
         this.loadProducts().then((data) => {
             this.products = data;
         }).catch((error) => {
-            console.error(`Error loading products: ${error.message}`);
+            req.logger.error(`Error loading products: ${error.message}`);
         });
     }
 

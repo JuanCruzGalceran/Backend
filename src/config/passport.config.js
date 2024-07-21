@@ -19,13 +19,16 @@ export const initPassport = () => {
       },
       async function (req, username, password, done) {
         try {
+          console.log("Registrando usuario asdasd");
           let { username, email } = req.body;
           if (!username || !email) {
+            console.log("Faltan datos");
             return done(null, false);
           }
 
           let existe = await userRepository.getBy({ email });
           if (existe) {
+            console.log("Usuario ya existe");
             return done(null, false);
           }
 
@@ -34,10 +37,14 @@ export const initPassport = () => {
             rol = "admin";
           }
 
+          console.log("Creando usuario");
+
           const newCart = await cartRepository.createCart();
           const cartId = newCart._id;
 
           password = creaHash(password);
+
+          console.log("Creando usuario 2");
           let nuevoUsuario = await userRepository.create({
             username,
             email,

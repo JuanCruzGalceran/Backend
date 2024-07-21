@@ -23,6 +23,7 @@
             <img src="{{product.thumbnail}}" alt="{{product.title}}" class="card-img" />
           </div>
           <div class="btn-container">
+    {{#unless (eq product.owner email)}}
             <button
               class="agregar-btn general-buttons"
               type="submit"
@@ -30,6 +31,7 @@
               onclick="agregarAlCarrito('{{product._id}}', '{{cartId}}')"
               value="{{product._id}}"
             >Agregar al carrito</button>
+            {{/unless}}
           </div>
         </div>
       </div>

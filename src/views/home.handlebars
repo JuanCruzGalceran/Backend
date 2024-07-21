@@ -44,7 +44,9 @@
         </div>
     </a>
     <div class="btn-container">
+    {{#unless (eq this.owner ../email)}}
       <button class="agregar-btn general-buttons" type="submit" id="add-btn" onclick="agregarAlCarrito('{{this._id}}', '{{../cartId}}')" value="{{this._id}}">Agregar al carrito</button>
+    {{/unless}}
     </div>
     </div>
 

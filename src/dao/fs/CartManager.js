@@ -9,7 +9,7 @@ class CartManager {
         this.loadCarts().then((data) => {
             this.carts = data;
         }).catch((error) => {
-            console.error(`Error loading carts: ${error.message}`);
+            req.logger.error(`Error loading carts: ${error.message}`);
         });
     }
 

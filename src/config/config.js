@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import { Command, Option } from "commander";
+import { loggerDev } from "./logger.js";
 
 let programa = new Command();
 
@@ -10,7 +11,7 @@ const opts = programa.opts();
 
 const mode = opts.mode;
 
-console.log(`Ejecutando en modo ${mode}`);
+loggerDev.info(`Ejecutando en modo ${mode}`);
 dotenv.config({
   path: mode === "prod" ? "./src/.env.prod" : "./src/.env.dev",
   override: true,
@@ -19,9 +20,13 @@ dotenv.config({
 export const config = {
   PORT: process.env.PORT || 3000,
   MENSAJE: process.env.MENSAJE,
+  SECRET: process.env.SECRET,
   MONGO_URL: process.env.MONGO_URL,
   DB_NAME: process.env.DB_NAME || "basePruebas",
   CLIENTID: process.env.CLIENTID,
   CLIENTSECRET: process.env.CLIENTSECRET,
   CALLBACKURL: process.env.CALLBACKURL,
+  mode: mode,
+  GMAIL_USER: process.env.GMAIL_USER,
+  GMAIL_PASS: process.env.GMAIL_PASS,
 };

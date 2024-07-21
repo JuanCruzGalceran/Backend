@@ -1,10 +1,7 @@
-import { routes } from "../utils.js";
-// import ProductManager from "../dao/Mongo/productManagerMongo.js";
 import { productsModel } from "../dao/models/products.model.js";
 import { productRepository } from "../services/services.js";
-
-const rutaProductos = routes.products;
-// const products = new ProductManager(rutaProductos);
+import { usersModel } from "../dao/models/users.model.js";
+import { enviarMail } from "../config/mailer.js";
 
 export const getAllProducts = async (req, res) => {
   let { pagina, limit, query, sort } = req.query;
@@ -58,7 +55,7 @@ export const getAllProducts = async (req, res) => {
       nextLink: page < totalPages ? `/?page=${page + 1}` : null,
     });
   } catch (error) {
-    console.error(error);
+    req.logger.error(error);
     res.status(500).send("Error interno del servidor");
   }
 };
@@ -76,8 +73,17 @@ export const getProductById = async (req, res) => {
 export const addProduct = async (req, res) => {
   try {
     const newProduct = req.body;
+    const email = req?.user?.email || newProduct.email;
+    let usuario = await usersModel.findOne({ email: email });
+
+    let owner = usuario.email;
+
+    if (usuario.rol === "premium") {
+      newProduct.owner = owner;
+    }
+
     await productRepository.addProduct(newProduct);
-    res.status(201).json({ message: "Producto creado correctamente" });
+    res.status(200).json({ message: "Producto creado correctamente" });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -97,9 +103,32 @@ export const updateProduct = async (req, res) => {
 export const deleteProduct = async (req, res) => {
   try {
     const productId = req.params.pid;
+
+    const product = await productRepository.getProductById(productId);
+    if (!product) {
+      return res.status(404).json({ error: "Producto no encontrado" });
+    }
+
+    const owner = await usersModel.findOne({ email: product.owner });
+    if (!owner) {
+      return res.status(404).json({ error: "Propietario del producto no encontrado" });
+    }
+
+    if (owner.rol === "premium") {
+      const subject = "Producto eliminado";
+      const message = `
+              <p>Hola ${owner.first_name},</p>
+              <p>Le informamos que su producto <strong>${product.title}</strong> ha sido eliminado de nuestra plataforma.</p>
+              <p>Saludos,</p>
+              <p>El equipo de E-commerce</p>
+          `;
+      await enviarMail(owner.email, subject, message);
+    }
+
     await productRepository.deleteProduct(productId);
     res.json({ message: "Producto eliminado correctamente" });
   } catch (error) {
-    res.status(404).json({ error: error.message });
+    req.logger.error(error);
+    res.status(500).json({ error: error.message });
   }
 };

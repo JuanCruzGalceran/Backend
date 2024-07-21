@@ -12,8 +12,7 @@ import {
 } from "../controllers/cart.controller.js";
 
 import { createTicket } from "../controllers/ticket.controller.js";
-
-// import { createTicket } from "../controllers/ticket.controller.js";
+import errorMiddleware from "../services/errors/middlewares/errorMiddleware.js";
 
 cartRouter.get("/", getCarts);
 
@@ -32,5 +31,7 @@ cartRouter.put("/:cid/product/:pid", updateProductQuantity);
 cartRouter.delete("/:cid", emptyCart);
 
 cartRouter.post("/:cid/purchase", createTicket);
+
+cartRouter.use(errorMiddleware);
 
 export default cartRouter;

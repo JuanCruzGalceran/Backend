@@ -6,9 +6,8 @@ import { usersModel } from "../models/users.model.js";
 export default class TicketManager {
   async createTicket(userId, cartId) {
     try {
-      console.log("Creando ticket para el usuario", userId);
       const cart = await CartModel.findOne({ _id: cartId });
-      if (!cart) {
+      if (!cart || cart.products.length === 0) {
         throw new Error("No existe un carrito para el usuario");
       }
 
@@ -19,6 +18,10 @@ export default class TicketManager {
 
       const { availableProducts, unavailableProducts } = await this.checkStock(cart.products);
 
+      if (availableProducts.length === 0) {
+        throw new Error("No hay stock disponible para los productos seleccionados");
+      }
+
       await this.updateStock(availableProducts);
 
       await newTicket.save();
@@ -27,7 +30,7 @@ export default class TicketManager {
 
       return { newTicket, unavailableProducts };
     } catch (error) {
-      console.log("Error al crear ticket", error);
+      req.logger.error("Error al crear ticket", error);
       throw error;
     }
   }
@@ -56,7 +59,7 @@ export default class TicketManager {
       }
       return { availableProducts, unavailableProducts };
     } catch (error) {
-      console.log("Error al verificar stock", error);
+      req.logger.error("Error al verificar stock", error);
       throw error;
     }
   }
@@ -64,14 +67,13 @@ export default class TicketManager {
   async updateStock(products) {
     try {
       for (const item of products) {
-        console.log("Actualizando stock del producto", item);
         await productsModel.findByIdAndUpdate(item.product._id, {
           $inc: { stock: -item.quantity },
           $set: { status: item.quantity <= item.stock },
         });
       }
     } catch (error) {
-      console.log("Error al actualizar stock", error);
+      req.logger.error("Error al actualizar stock", error);
       throw error;
     }
   }
@@ -88,17 +90,28 @@ export default class TicketManager {
 
       return tickets;
     } catch (error) {
-      console.error("Error al obtener los tickets:", error);
+      req.logger.error("Error al obtener los tickets:", error);
       throw error;
     }
   }
 
   calculateTotalAmount(products) {
-    console.log("Calculando monto total de la compra", products);
     return products.reduce((total, item) => {
       const price = item.product.price;
       const quantity = item.quantity;
       return total + price * quantity;
     }, 0);
   }
+
+  async getLatestTicketByUser(userId) {
+    try {
+        const latestTicket = await TicketModel.findOne({ purchaser: userId })
+            .sort({ createdAt: -1 })
+            .lean();
+        return latestTicket;
+    } catch (error) {
+        console.error("Error al obtener el último ticket del usuario:", error);
+        throw error;
+    }
+}
 }

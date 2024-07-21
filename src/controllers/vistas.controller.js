@@ -1,5 +1,5 @@
 // import ProductManager from "../dao/Mongo/productManagerMongo.js";
-import { productRepository } from "../services/services.js";
+import { productRepository, ticketRepository } from "../services/services.js";
 import { productsModel } from "../dao/models/products.model.js";
 import cartModel from "../dao/models/carts.model.js";
 import __dirname from "../utils.js";
@@ -7,6 +7,7 @@ import { generateMockProducts } from "../mocks/mocks.js";
 import errorsDictionary from "../services/errors/errors-dictionary.js";
 import CustomError from "../services/errors/customError.js";
 import { usersModel } from "../dao/models/users.model.js";
+
 
 // const products = new ProductManager();
 
@@ -213,4 +214,30 @@ export const premium = async (req, res) => {
   const isPremium = usuario.rol === "premium";
   const productos = await productsModel.find({ owner: email }).lean();
   res.status(200).render("premium", { usuario, productos, rol, uid, isAdmin, isUser, isPremium });
+};
+
+export const adminUsers = async (req, res) => {
+  try {
+      const users = await usersModel.find().lean();  
+      res.render("adminUsers", { users }); 
+  } catch (error) {
+      loggerDev.error("Error al obtener los usuarios", error);
+      res.status(500).send("Error interno del servidor");
+  }
+};
+
+export const details = async (req, res) => {
+  try {
+      const userId = req.user._id;
+      const latestTicket = await ticketRepository.getLatestTicketByUser(userId);
+
+      if (latestTicket) {
+          res.render('details', { ticket: latestTicket, user: req.user });
+      } else {
+          res.status(404).send('No se encontró ningún ticket para este usuario.');
+      }
+  } catch (error) {
+      req.logger.error('Error al obtener los detalles del último ticket:', error);
+      res.status(500).send('Error interno del servidor');
+  }
 };

@@ -21,6 +21,7 @@ function finishPurchase(cartId) {
           },
           close: true,
         }).showToast();
+        window.location.href = `/details?ticketId=${result.newTicket._id}`;
 
         if (result.unavailableProducts && result.unavailableProducts.length > 0) {
           const message = result.unavailableProducts
@@ -52,7 +53,7 @@ function finishPurchase(cartId) {
       }
     })
     .catch(error => {
-      req.logger.error("Error al comprar:", error);
+      console.log("debugJ error", error);
       Toastify({
         text: "Error al comprar",
         duration: 3000,

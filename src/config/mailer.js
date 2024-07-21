@@ -13,7 +13,7 @@ const trasnporter = nodemailer.createTransport({
 
 export const enviarMail = async (to, subject, message) => {
   const options = {
-    from: `Backend DC ${config.GMAIL_USER}`,
+    from: `Backend Juan Cruz Galceran ${config.GMAIL_USER}`,
     to,
     subject,
     html: message,

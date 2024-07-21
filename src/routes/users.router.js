@@ -1,10 +1,11 @@
 import { Router } from "express";
 import { updatePremiumStatus } from "../controllers/users.controller.js";
 import { uploader } from "../utils.js";
-import { uploadDocuments } from "../controllers/users.controller.js";
+import { uploadDocuments, getAllUsers, deleteInactiveUsers, updateUserRole, deleteUser } from "../controllers/users.controller.js";
 
 const usersRouter = Router();
 
+usersRouter.get("/", getAllUsers);
 usersRouter.get("/premium/:uid", updatePremiumStatus);
 usersRouter.post(
   "/:uid/documents",
@@ -15,5 +16,8 @@ usersRouter.post(
   ]),
   uploadDocuments
 );
+usersRouter.delete("/", deleteInactiveUsers);
+usersRouter.post("/role/:uid", updateUserRole);
+usersRouter.post("/:uid", deleteUser);
 
 export default usersRouter;

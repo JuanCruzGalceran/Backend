@@ -102,4 +102,16 @@ export default class TicketManager {
       return total + price * quantity;
     }, 0);
   }
+
+  async getLatestTicketByUser(userId) {
+    try {
+        const latestTicket = await TicketModel.findOne({ purchaser: userId })
+            .sort({ createdAt: -1 })
+            .lean();
+        return latestTicket;
+    } catch (error) {
+        console.error("Error al obtener el último ticket del usuario:", error);
+        throw error;
+    }
+}
 }

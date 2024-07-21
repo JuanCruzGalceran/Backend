@@ -16,6 +16,8 @@ import {
   reset,
   rol,
   premium,
+  adminUsers,
+  details
 } from "../controllers/vistas.controller.js";
 
 const vistasRouter = Router();
@@ -44,10 +46,14 @@ vistasRouter.get("/mockingproducts", mocks);
 
 vistasRouter.get("/recover", recover);
 
-vistasRouter.get("/reset" , reset)
+vistasRouter.get("/reset", reset);
 
 vistasRouter.get("/rol", rol);
 
 vistasRouter.get("/premium", premium);
+
+vistasRouter.get("/adminusers", auth, admin, adminUsers);
+
+vistasRouter.get("/details", auth, details);
 
 export default vistasRouter;

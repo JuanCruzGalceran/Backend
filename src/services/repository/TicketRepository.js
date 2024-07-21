@@ -10,6 +10,10 @@ class TicketRepository {
   create = (userId, cartId) => {
     return this.TicketManager.createTicket(userId, cartId);
   };
+
+  getLatestTicketByUser = userId => {
+    return this.TicketManager.getLatestTicketByUser(userId);
+  };
 }
 
 export default TicketRepository;

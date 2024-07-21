@@ -1,0 +1,35 @@
+{{> navbar}}
+
+<h1>Administrar Usuarios</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Rol</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each users}}
+            <tr>
+                <td>{{this.first__name}} {{this.last__name}}</td>
+                <td>{{this.email}}</td>
+                <td>{{this.rol}}</td>
+                <td>
+                    <form action="/api/users/role/{{this._id}}" method="POST">
+                        <select name="rol">
+                            <option value="user" {{#if (eq this.rol "user")}}selected{{/if}}>User</option>
+                            <option value="admin" {{#if (eq this.rol "admin")}}selected{{/if}}>Admin</option>
+                            <option value="premium" {{#if (eq this.rol "premium")}}selected{{/if}}>Premium</option>
+                        </select>
+                        <button type="submit">Actualizar Rol</button>
+                    </form>
+                    <form action="/api/users/{{this._id}}" method="POST" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este usuario?');">
+                        <button type="submit">Eliminar Usuario</button>
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>

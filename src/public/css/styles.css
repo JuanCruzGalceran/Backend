@@ -489,3 +489,12 @@ a {
   border: 1px solid #ff5722;
   padding: 1rem;
 }
+
+.btn {
+  color:black;
+  text-decoration: underline;
+  padding: 1rem;
+  border: 1px solid #ff5722;
+  border-radius: 5px;
+  margin-top: 20px;
+}

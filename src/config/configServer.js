@@ -7,10 +7,7 @@ const URI = process.env.MONGO_URL || "mongodb+srv://gjuancruz:juankadel77@cluste
 const connectToDB = async () => {
   try {
     await mongoose.connect(URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
       tls: true,  // Habilitar TLS/SSL
-      tlsCAFile: '/path/to/ca.pem',  // Ruta al certificado CA si es necesario
     });
     loggerDev.info("Connected to DB ecommerce");
   } catch (error) {

@@ -18,7 +18,7 @@ dotenv.config({
 });
 
 export const config = {
-  PORT: process.env.PORT || 3000,
+  PORT: process.env.PORT || 8080,
   MENSAJE: process.env.MENSAJE,
   SECRET: process.env.SECRET,
   MONGO_URL: process.env.MONGO_URL,

@@ -8,6 +8,8 @@ const connectToDB = async () => {
   try {
     await mongoose.connect(URI, {
       tls: true,  // Habilitar TLS/SSL
+      ssl: true,
+      sslValidate: true,
     });
     loggerDev.info("Connected to DB ecommerce");
   } catch (error) {

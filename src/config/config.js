@@ -4,7 +4,7 @@ import { loggerDev } from "./logger.js";
 
 let programa = new Command();
 
-programa.addOption(new Option("-m --mode <MODE>", "Modo de ejecución del Script").choices(["dev", "prod"]).default("dev"));
+programa.addOption(new Option("-m --mode <MODE>", "Modo de ejecución del Script").choices(["dev", "prod"]).default("prod"));
 
 programa.parse();
 const opts = programa.opts();
